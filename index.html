@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VRIANTE — Made For Uncommon</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button class="music-btn" id="musicBtn" onclick="toggleMusic()">🔇</button>
+
+<nav id="navbar">
+  <div class="logo">VRI<span>ANTE</span></div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <span class="close-menu" onclick="toggleMenu()">✕</span>
+  <a href="#home" onclick="toggleMenu()">Home</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#collection" onclick="toggleMenu()">Collection</a>
+  <a href="#gallery" onclick="toggleMenu()">Gallery</a>
+  <a href="#reviews" onclick="toggleMenu()">Reviews</a>
+  <a href="#faq" onclick="toggleMenu()">FAQ</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<section class="hero" id="home">
+  <div class="hero-badge">EST. 2025 • AGRA, INDIA</div>
+  <h1>VRI<span class="red">ANTE</span></h1>
+  <p class="hero-tagline">Made For <strong>Uncommon</strong></p>
+  <p class="hero-sub">Premium T-Shirts • Shirts • Pants • Hoodies</p>
+  <div class="hero-buttons">
+    <a href="#collection" class="btn btn-primary">Shop Collection</a>
+    <a href="#about" class="btn btn-outline">Our Story</a>
+  </div>
+  <div class="scroll-down">SCROLL ↓</div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-content">
+    <span>FREE SHIPPING ON ₹699+</span>
+    <span>PREMIUM QUALITY</span>
+    <span>MADE FOR UNCOMMON</span>
+    <span>30% OFF</span>
+    <span>COD AVAILABLE</span>
+    <span>EST. 2025 • AGRA</span>
+    <span>FREE SHIPPING ON ₹699+</span>
+    <span>PREMIUM QUALITY</span>
+    <span>MADE FOR UNCOMMON</span>
+    <span>30% OFF</span>
+    <span>COD AVAILABLE</span>
+    <span>EST. 2025 • AGRA</span>
+  </div>
+</div>
+
+<section id="about" class="section">
+  <div class="section-head">
+    <span class="label">About Us</span>
+    <h2>THE <span class="red">VRIANTE</span> STORY</h2>
+    <p>From a small dream in Agra to a brand made for the uncommon.</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <h3>WEAR YOUR <span>ATTITUDE</span></h3>
+      <p>Vriante was born in 2025 from a humble family in Agra with one simple dream — to create something of our own. No shortcuts, no support, just pure passion and the will to do something different.</p>
+      <p>We started with a simple idea: premium clothing shouldn't be a luxury. Every piece we craft — from oversized tees to tailored pants, from bold hoodies to classic shirts — is made for those who refuse to blend in.</p>
+      <p><strong style="color:#e63946;">Made For Uncommon</strong> isn't just a tagline. It's a promise.</p>
+      <div class="about-stats">
+        <div class="stat"><h4>130+</h4><p>Products</p></div>
+        <div class="stat"><h4>4.9★</h4><p>Rating</p></div>
+        <div class="stat"><h4>2025</h4><p>Established</p></div>
+      </div>
+    </div>
+    <div class="about-img"></div>
+  </div>
+</section>
+
+<section id="collection" class="section">
+  <div class="section-head">
+    <span class="label">Shop Now</span>
+    <h2>OUR <span class="red">COLLECTION</span></h2>
+    <p>130+ premium products — T-Shirts, Shirts, Pants & Hoodies. All at 30% OFF.</p>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterProducts('all', this)">All (130)</button>
+    <button class="filter-btn" onclick="filterProducts('tshirt', this)">T-Shirts (20)</button>
+    <button class="filter-btn" onclick="filterProducts('shirt', this)">Shirts (30)</button>
+    <button class="filter-btn" onclick="filterProducts('pant', this)">Pants (40)</button>
+    <button class="filter-btn" onclick="filterProducts('hoodie', this)">Hoodies (40)</button>
+  </div>
+
+  <div class="products" id="productsGrid"></div>
+
+  <div class="load-more-wrap">
+    <button class="load-more-btn" id="loadMoreBtn" onclick="loadMore()">Load More Products</button>
+  </div>
+</section>
+
+<section id="gallery" class="section">
+  <div class="section-head">
+    <span class="label">Gallery</span>
+    <h2>STYLE <span class="red">DIARIES</span></h2>
+    <p>Real people. Real style. Real Vriante.</p>
+  </div>
+  <div class="gallery">
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800" alt="Style 1"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=600" alt="Style 2"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600" alt="Style 3"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600" alt="Style 4"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600" alt="Style 5"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600" alt="Style 6"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600" alt="Style 7"></div>
+    <div class="gallery-item"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600" alt="Style 8"></div>
+  </div>
+</section>
+
+<section id="sizeguide" class="section">
+  <div class="section-head">
+    <span class="label">Size Guide</span>
+    <h2>FIND YOUR <span class="red">FIT</span></h2>
+    <p>Perfect fit, every time.</p>
+  </div>
+  <div class="size-table-wrap">
+    <table class="size-table">
+      <thead>
+        <tr><th>Size</th><th>Chest (in)</th><th>Waist (in)</th><th>Length (in)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>S</td><td>36-38</td><td>30-32</td><td>26</td></tr>
+        <tr><td>M</td><td>38-40</td><td>32-34</td><td>27</td></tr>
+        <tr><td>L</td><td>40-42</td><td>34-36</td><td>28</td></tr>
+        <tr><td>XL</td><td>42-44</td><td>36-38</td><td>29</td></tr>
+        <tr><td>XXL</td><td>44-46</td><td>38-40</td><td>30</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="reviews" class="section">
+  <div class="section-head">
+    <span class="label">Testimonials</span>
+    <h2>WHAT CUSTOMERS <span class="red">SAY</span></h2>
+    <p>Real reviews from real customers.</p>
+  </div>
+  <div class="testimonials">
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p>"Bhai quality ekdum mast hai! Black hoodie liya, 3 mahine se pehen raha hoon, ek baar bhi color nahi gaya. Vriante zindabad!"</p>
+      <div class="author">
+        <div class="author-avatar">R</div>
+        <div class="author-info"><h5>Rahul Sharma</h5><span>Delhi</span></div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p>"Price ke hisaab se best quality. 30% off me toh steal deal hai. Already 4 t-shirts le chuka hoon. Highly recommended!"</p>
+      <div class="author">
+        <div class="author-avatar">P</div>
+        <div class="author-info"><h5>Priya Verma</h5><span>Mumbai</span></div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p>"Delivery time pe aayi, packaging bhi premium thi. Shirt ka fabric ekdum soft hai. Vriante ka fan ho gaya bhai!"</p>
+      <div class="author">
+        <div class="author-avatar">A</div>
+        <div class="author-info"><h5>Aman Khan</h5><span>Agra</span></div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="stars">★★★★☆</div>
+      <p>"Cargo pants liya, fit ekdum perfect. Thoda aur colors aane chahiye. Baaki sab mast hai. COD bhi available hai."</p>
+      <div class="author">
+        <div class="author-avatar">S</div>
+        <div class="author-info"><h5>Sneha Patel</h5><span>Bangalore</span></div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p>"Made For Uncommon — bilkul sahi tagline hai. Sabse alag designs hain. Friends ne bhi order kar diye mere dekh ke."</p>
+      <div class="author">
+        <div class="author-avatar">V</div>
+        <div class="author-info"><h5>Vikram Singh</h5><span>Jaipur</span></div>
+      </div>
+    </div>
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p>"Gareeb family se aake itna mast brand banaya hai, respect! Quality dekh ke laga premium brand hai. Support karo bhai log."</p>
+      <div class="author">
+        <div class="author-avatar">N</div>
+        <div class="author-info"><h5>Neha Gupta</h5><span>Lucknow</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section">
+  <div class="section-head">
+    <span class="label">FAQ</span>
+    <h2>COMMON <span class="red">QUESTIONS</span></h2>
+    <p>Sab kuch jo jaanna hai.</p>
+  </div>
+  <div class="faq-container">
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Order kaise karun? <span class="plus">+</span></div>
+      <div class="faq-a">Do tarike hain — (1) WhatsApp pe direct message karo 9900098766, (2) Website pe form fill karo. Dono me se koi bhi use kar sakte ho.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Payment kaise hoti hai? <span class="plus">+</span></div>
+      <div class="faq-a">UPI (GPay/PhonePe/Paytm) ya Cash on Delivery (COD). COD pe ₹49 extra charges hain.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Delivery kitne din me aati hai? <span class="plus">+</span></div>
+      <div class="faq-a">5 din ke andar aapke address pe pahunch jati hai. Free shipping ₹699+ ke order pe. Neeche ke order pe ₹50 charges.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Return policy kya hai? <span class="plus">+</span></div>
+      <div class="faq-a">5 din ke andar return kar sakte ho. Product unused hona chahiye, tags intact hone chahiye. Exchange available nahi hai.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Size kaise choose karun? <span class="plus">+</span></div>
+      <div class="faq-a">Upar Size Guide section me chart diya hai. Apna chest/waist measure karke size choose karo. Confusion ho toh WhatsApp pe pooch lo.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">COD available hai? <span class="plus">+</span></div>
+      <div class="faq-a">Haan! COD available hai. ₹49 extra charges lagte hain COD pe. Order karte waqt COD select kar lena.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Kya main bulk order kar sakta hoon? <span class="plus">+</span></div>
+      <div class="faq-a">Bilkul! Bulk order pe special discount milega. WhatsApp pe 9900098766 pe contact karo details ke liye.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Original product hai ya copy? <span class="plus">+</span></div>
+      <div class="faq-a">100% original! Vriante apna khud ka brand hai. Hum khud manufacture karte hain, isliye quality guarantee hai. Koi third-party nahi.</div>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <h2>JOIN THE <span>VRIANTE</span> FAMILY</h2>
+  <p>New drops, exclusive offers & 30% OFF — sabse pehle paao.</p>
+  <form onsubmit="event.preventDefault(); subscribeMsg();">
+    <input type="email" placeholder="Enter your email" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<section id="contact" class="section">
+  <div class="section-head">
+    <span class="label">Get In Touch</span>
+    <h2>CONTACT <span class="red">US</span></h2>
+    <p>Order karo, sawaal poocho, ya bas hello bolo.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>REACH <span>OUT</span></h3>
+      <div class="contact-item">
+        <div class="contact-icon">📱</div>
+        <div><h5>WhatsApp / Call</h5><p>+91 99000 98766</p></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div><h5>Email</h5><p>vriante.official@gmail.com</p></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div><h5>Location</h5><p>Agra, Uttar Pradesh, India</p></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📸</div>
+        <div><h5>Instagram</h5><p>@vriante</p></div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <input type="text" id="cName" placeholder="Your Name" required>
+      <input type="tel" id="cPhone" placeholder="Phone Number" required>
+      <input type="text" id="cProduct" placeholder="Product (e.g. Black Hoodie)" required>
+      <input type="text" id="cSize" placeholder="Size (S/M/L/XL/XXL)">
+      <input type="text" id="cColor" placeholder="Color (Black/Red/White/Green)">
+      <textarea id="cAddress" placeholder="Full Address with Pincode" required></textarea>
+      <button onclick="submitOrder()">Send Order on WhatsApp</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>VRI<span>ANTE</span></h3>
+      <p>Made For Uncommon. Premium clothing from Agra, India. Est. 2025.</p>
+      <div class="footer-social">
+        <a href="https://instagram.com/vriante" target="_blank">📸</a>
+        <a href="https://facebook.com/vriante" target="_blank">📘</a>
+        <a href="https://wa.me/919900098766" target="_blank">💬</a>
+        <a href="mailto:vriante.official@gmail.com">✉️</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#collection">T-Shirts</a></li>
+        <li><a href="#collection">Shirts</a></li>
+        <li><a href="#collection">Pants</a></li>
+        <li><a href="#collection">Hoodies</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#sizeguide">Size Guide</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Info</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Return Policy</a></li>
+        <li><a href="#">Terms</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 VRIANTE • Made With ❤️ In Agra • All Rights Reserved
+  </div>
+</footer>
+
+<a href="https://wa.me/919900098766?text=Hi%20Vriante!%20Mujhe%20order%20karna%20hai." class="whatsapp-float" target="_blank">💬</a>
+
+<div class="modal" id="orderModal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeModal()">✕</span>
+    <h3 id="modalTitle">Order Product</h3>
+    <img id="modalImg" src="" alt="Product">
+    <p id="modalPrice"></p>
+    <input type="text" id="mName" placeholder="Your Name">
+    <input type="tel" id="mPhone" placeholder="Phone Number">
+    <input type="text" id="mSize" placeholder="Size (S/M/L/XL/XXL)">
+    <input type="text" id="mColor" placeholder="Color">
+    <textarea id="mAddress" placeholder="Full Address"></textarea>
+    <button onclick="sendWhatsApp()">Order on WhatsApp</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
