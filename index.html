@@ -517,3 +517,53 @@
 <!-- QUICK VIEW MODAL -->
 <div class="modal" id="quickViewModal">
   <div class="modal-content quick-view">
+      <span class="modal-close" onclick="closeQuickView()">✕</span>
+      <div class="qv-grid">
+        <img id="qvImg" src="" alt="Product">
+        <div class="qv-info">
+          <span class="qv-cat" id="qvCat"></span>
+          <h3 id="qvTitle"></h3>
+          <p class="qv-price" id="qvPrice"></p>
+          <p class="qv-desc">Premium quality fabric. Made for the uncommon. Available in all sizes.</p>
+          <div class="qv-sizes">
+            <p>Select Size:</p>
+            <div class="size-btns">
+              <button onclick="selectSize(this)">S</button>
+              <button onclick="selectSize(this)">M</button>
+              <button onclick="selectSize(this)">L</button>
+              <button onclick="selectSize(this)">XL</button>
+              <button onclick="selectSize(this)">XXL</button>
+            </div>
+          </div>
+          <div class="qv-actions">
+            <button class="qv-add-cart" onclick="addToCartFromQuickView()">Add To Bag</button>
+            <button class="qv-buy" onclick="orderFromQuickView()">Order on WhatsApp</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal" id="orderModal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeModal()">✕</span>
+    <h3 id="modalTitle">Order Product</h3>
+    <img id="modalImg" src="" alt="Product">
+    <p id="modalPrice"></p>
+    <input type="text" id="mName" placeholder="Your Name">
+    <input type="tel" id="mPhone" placeholder="Phone Number">
+    <input type="text" id="mSize" placeholder="Size (S/M/L/XL/XXL)">
+    <input type="text" id="mColor" placeholder="Color">
+    <textarea id="mAddress" placeholder="Full Address"></textarea>
+    <button onclick="sendWhatsApp()">Order on WhatsApp</button>
+  </div>
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
