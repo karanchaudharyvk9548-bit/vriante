@@ -4,7 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>VRIANTE — Made For Uncommon | Premium Clothing</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<meta name="description" content="VRIANTE — Premium clothing from Agra. Shop 400+ T-shirts, shirts, pants, hoodies, footwear at 30% OFF. Free shipping ₹699+. COD available.">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,13 +20,10 @@
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- SCROLL PROGRESS BAR -->
+<!-- SCROLL PROGRESS -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- MUSIC BUTTON -->
-<button class="music-btn" id="musicBtn" onclick="toggleMusic()">🔇</button>
-
-<!-- ANNOUNCEMENT BAR -->
+<!-- TOP ANNOUNCEMENT BAR -->
 <div class="announcement-bar">
   <div class="announcement-content">
     <span>🔥 MEGA SALE — 30% OFF ON EVERYTHING</span>
@@ -44,13 +42,20 @@
   <div class="nav-left">
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
   </div>
-  <div class="logo">VRI<span>ANTE</span></div>
+  <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">VRI<span>ANTE</span></div>
   <div class="nav-right">
-    <a href="#collection" class="nav-icon" title="Search">🔍</a>
-    <a href="#" class="nav-icon" title="Wishlist">♡</a>
-    <a href="#" class="nav-icon cart-icon" title="Cart">🛍<span class="cart-count">0</span></a>
+    <button class="nav-icon" onclick="toggleSearch()" title="Search">🔍</button>
+    <button class="nav-icon" onclick="toggleWishlist()" title="Wishlist">♡<span class="wishlist-count" id="wishlistCount">0</span></button>
+    <button class="nav-icon cart-icon" onclick="toggleCart()" title="Cart">🛍<span class="cart-count" id="cartCount">0</span></button>
   </div>
 </nav>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="searchOverlay">
+  <span class="close-search" onclick="toggleSearch()">✕</span>
+  <input type="text" placeholder="Search products..." id="searchInput" oninput="liveSearch()">
+  <div class="search-results" id="searchResults"></div>
+</div>
 
 <!-- SIDE MENU -->
 <div class="side-menu" id="sideMenu">
@@ -59,40 +64,63 @@
     <h2>MENU</h2>
     <a href="#home" onclick="toggleMenu()">Home</a>
     <a href="#collection" onclick="toggleMenu()">Shop All</a>
-    <a href="#tshirts" onclick="toggleMenu()">T-Shirts</a>
-    <a href="#shirts" onclick="toggleMenu()">Shirts</a>
-    <a href="#pants" onclick="toggleMenu()">Pants</a>
-    <a href="#hoodies" onclick="toggleMenu()">Hoodies</a>
-    <a href="#footwear" onclick="toggleMenu()">Footwear</a>
-    <a href="#accessories" onclick="toggleMenu()">Accessories</a>
+    <a href="#sport" onclick="toggleMenu()">Sport</a>
+    <a href="#luxe" onclick="toggleMenu()">Luxe</a>
+    <a href="#street" onclick="toggleMenu()">Street</a>
     <a href="#about" onclick="toggleMenu()">About</a>
+    <a href="#store" onclick="toggleMenu()">Store</a>
+    <a href="#blog" onclick="toggleMenu()">Journal</a>
     <a href="#contact" onclick="toggleMenu()">Contact</a>
   </div>
   <div class="side-menu-footer">
     <p>📱 9900098766</p>
     <p>📍 Agra, India</p>
+    <div class="side-social">
+      <a href="https://instagram.com/vriante" target="_blank">📸</a>
+      <a href="https://facebook.com/vriante" target="_blank">📘</a>
+      <a href="https://wa.me/919900098766" target="_blank">💬</a>
+    </div>
   </div>
 </div>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>YOUR BAG (<span id="cartItemCount">0</span>)</h3>
+    <span class="close-cart" onclick="toggleCart()">✕</span>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <p class="cart-empty">Your bag is empty</p>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>TOTAL:</span>
+      <span id="cartTotal">₹0</span>
+    </div>
+    <button class="checkout-btn" onclick="checkoutWhatsApp()">Checkout on WhatsApp</button>
+  </div>
+</div>
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
 
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-slideshow">
-    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1600')"></div>
-    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=1600')"></div>
-    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1600')"></div>
+    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1920')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=1920')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1920')"></div>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-badge">EST. 2025 • AGRA, INDIA</div>
-    <h1>VRI<span class="red">ANTE</span></h1>
+    <h1>VRI<span>ANTE</span></h1>
     <p class="hero-tagline">Made For <strong>Uncommon</strong></p>
-    <p class="hero-sub">Premium T-Shirts • Shirts • Pants • Hoodies • Footwear</p>
+    <p class="hero-sub">PREMIUM CLOTHING • SINCE 2025</p>
     <div class="hero-buttons">
       <a href="#collection" class="btn btn-primary">Shop Collection</a>
       <a href="#about" class="btn btn-outline">Our Story</a>
     </div>
   </div>
-  <div class="scroll-down">SCROLL ↓</div>
+  <div class="hero-scroll">SCROLL ↓</div>
 </section>
 
 <!-- MARQUEE -->
@@ -108,50 +136,48 @@
     <span>PREMIUM QUALITY</span>
     <span>MADE FOR UNCOMMON</span>
     <span>30% OFF</span>
-    <span>COD AVAILABLE</span>
-    <span>EST. 2025 • AGRA</span>
   </div>
 </div>
 
 <!-- SUB-BRANDS -->
-<section class="sub-brands section">
+<section class="sub-brands section" id="sport">
   <div class="section-head">
     <span class="label">Our Lines</span>
     <h2>EXPLORE <span class="red">VRIANTE</span> WORLD</h2>
     <p>Three collections. One legacy.</p>
   </div>
   <div class="brands-grid">
-    <div class="brand-card">
+    <div class="brand-card" onclick="filterProducts('footwear', null)">
       <div class="brand-bg" style="background-image:url('https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800')"></div>
       <div class="brand-overlay"></div>
       <div class="brand-info">
         <h3>VRIANTE <span>SPORT</span></h3>
         <p>Performance wear for the bold</p>
-        <a href="#collection" class="brand-btn">Explore →</a>
+        <span class="brand-btn">Explore →</span>
       </div>
     </div>
-    <div class="brand-card">
+    <div class="brand-card" id="luxe" onclick="filterProducts('shirt', null)">
       <div class="brand-bg" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800')"></div>
       <div class="brand-overlay"></div>
       <div class="brand-info">
         <h3>VRIANTE <span>LUXE</span></h3>
         <p>Premium tailored elegance</p>
-        <a href="#collection" class="brand-btn">Explore →</a>
+        <span class="brand-btn">Explore →</span>
       </div>
     </div>
-    <div class="brand-card">
+    <div class="brand-card" id="street" onclick="filterProducts('hoodie', null)">
       <div class="brand-bg" style="background-image:url('https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=800')"></div>
       <div class="brand-overlay"></div>
       <div class="brand-info">
         <h3>VRIANTE <span>STREET</span></h3>
         <p>Bold streetwear attitude</p>
-        <a href="#collection" class="brand-btn">Explore →</a>
+        <span class="brand-btn">Explore →</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- COUNTDOWN TIMER -->
+<!-- COUNTDOWN -->
 <section class="countdown-section">
   <div class="countdown-wrap">
     <div class="countdown-text">
@@ -168,32 +194,77 @@
   </div>
 </section>
 
-<!-- COLLECTION -->
-<section id="collection" class="section">
+<!-- COLLECTION WITH SIDEBAR FILTER -->
+<section id="collection" class="section collection-section">
   <div class="section-head">
     <span class="label">Shop Now</span>
     <h2>OUR <span class="red">COLLECTION</span></h2>
-    <p>400+ premium products across all categories. 30% OFF on everything.</p>
+    <p>400+ premium products. 30% OFF on everything.</p>
   </div>
 
-  <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterProducts('all', this)">All</button>
-    <button class="filter-btn" onclick="filterProducts('tshirt', this)">T-Shirts</button>
-    <button class="filter-btn" onclick="filterProducts('shirt', this)">Shirts</button>
-    <button class="filter-btn" onclick="filterProducts('pant', this)">Pants</button>
-    <button class="filter-btn" onclick="filterProducts('hoodie', this)">Hoodies</button>
-    <button class="filter-btn" onclick="filterProducts('footwear', this)">Footwear</button>
-    <button class="filter-btn" onclick="filterProducts('accessory', this)">Accessories</button>
-  </div>
+  <div class="shop-layout">
+    <!-- FILTER SIDEBAR -->
+    <aside class="filter-sidebar" id="filterSidebar">
+      <div class="filter-header">
+        <h3>FILTERS</h3>
+        <span class="close-filter" onclick="toggleFilter()">✕</span>
+      </div>
 
-  <div class="products" id="productsGrid"></div>
+      <div class="filter-group">
+        <h4>Category</h4>
+        <label><input type="checkbox" value="tshirt" onchange="applyFilters()"> T-Shirts</label>
+        <label><input type="checkbox" value="shirt" onchange="applyFilters()"> Shirts</label>
+        <label><input type="checkbox" value="pant" onchange="applyFilters()"> Pants</label>
+        <label><input type="checkbox" value="hoodie" onchange="applyFilters()"> Hoodies</label>
+        <label><input type="checkbox" value="footwear" onchange="applyFilters()"> Footwear</label>
+        <label><input type="checkbox" value="accessory" onchange="applyFilters()"> Accessories</label>
+      </div>
 
-  <div class="load-more-wrap">
-    <button class="load-more-btn" id="loadMoreBtn" onclick="loadMore()">Load More Products</button>
+      <div class="filter-group">
+        <h4>Price</h4>
+        <label><input type="radio" name="price" value="0-999" onchange="applyFilters()"> Under ₹999</label>
+        <label><input type="radio" name="price" value="999-1999" onchange="applyFilters()"> ₹999 - ₹1999</label>
+        <label><input type="radio" name="price" value="1999-3999" onchange="applyFilters()"> ₹1999 - ₹3999</label>
+        <label><input type="radio" name="price" value="3999-99999" onchange="applyFilters()"> ₹3999+</label>
+      </div>
+
+      <div class="filter-group">
+        <h4>Size</h4>
+        <div class="size-filter">
+          <button onclick="toggleSizeFilter(this)">S</button>
+          <button onclick="toggleSizeFilter(this)">M</button>
+          <button onclick="toggleSizeFilter(this)">L</button>
+          <button onclick="toggleSizeFilter(this)">XL</button>
+          <button onclick="toggleSizeFilter(this)">XXL</button>
+        </div>
+      </div>
+
+      <button class="clear-filters" onclick="clearFilters()">Clear All Filters</button>
+    </aside>
+
+    <!-- PRODUCTS AREA -->
+    <div class="products-area">
+      <div class="products-toolbar">
+        <button class="filter-toggle-btn" onclick="toggleFilter()">☰ Filters</button>
+        <span class="result-count" id="resultCount">Showing all products</span>
+        <select class="sort-select" onchange="sortProducts(this.value)">
+          <option value="default">Sort: Featured</option>
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
+          <option value="new">Newest First</option>
+        </select>
+      </div>
+
+      <div class="products" id="productsGrid"></div>
+
+      <div class="load-more-wrap">
+        <button class="load-more-btn" id="loadMoreBtn" onclick="loadMore()">Load More Products</button>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- STORE LOCATOR -->
+<!-- STORE -->
 <section id="store" class="section store-section">
   <div class="section-head">
     <span class="label">Visit Us</span>
@@ -212,8 +283,7 @@
       </div>
     </div>
     <div class="store-map">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3549.9564437398434!2d78.00807531505755!3d27.176670982988534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3974711b1e5e3e4b%3A0x6b0d7e4e3b1e5e4b!2sAgra%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1234567890" 
-        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3549.9564437398434!2d78.00807531505755!3d27.176670982988534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3974711b1e5e3e4b%3A0x6b0d7e4e3b1e5e4b!2sAgra%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1234567890" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
   </div>
 </section>
@@ -347,38 +417,14 @@
     <p>Sab kuch jo jaanna hai.</p>
   </div>
   <div class="faq-container">
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">Order kaise karun? <span class="plus">+</span></div>
-      <div class="faq-a">Do tarike hain — (1) WhatsApp pe direct message karo 9900098766, (2) Website pe form fill karo. Dono me se koi bhi use kar sakte ho.</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">Payment kaise hoti hai? <span class="plus">+</span></div>
-      <div class="faq-a">UPI (GPay/PhonePe/Paytm) ya Cash on Delivery (COD). COD pe ₹49 extra charges hain.</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">Delivery kitne din me aati hai? <span class="plus">+</span></div>
-      <div class="faq-a">5 din ke andar aapke address pe pahunch jati hai. Free shipping ₹699+ ke order pe. Neeche ke order pe ₹50 charges.</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">Return policy kya hai? <span class="plus">+</span></div>
-      <div class="faq-a">5 din ke andar return kar sakte ho. Product unused hona chahiye, tags intact hone chahiye. Exchange available nahi hai.</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">Size kaise choose karun? <span class="plus">+</span></div>
-      <div class="faq-a">Size Guide section me chart diya hai. Apna chest/waist measure karke size choose karo. Confusion ho toh WhatsApp pe pooch lo.</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">COD available hai? <span class="plus">+</span></div>
-      <div class="faq-a">Haan! COD available hai. ₹49 extra charges lagte hain COD pe. Order karte waqt COD select kar lena.</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">Bulk order kar sakta hoon? <span class="plus">+</span></div>
-      <div class="faq-a">Bilkul! Bulk order pe special discount milega. WhatsApp pe 9900098766 pe contact karo details ke liye.</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">Original product hai? <span class="plus">+</span></div>
-      <div class="faq-a">100% original! Vriante apna khud ka brand hai. Hum khud manufacture karte hain, isliye quality guarantee hai. Koi third-party nahi.</div>
-    </div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Order kaise karun? <span class="plus">+</span></div><div class="faq-a">Do tarike hain — (1) WhatsApp pe direct message karo 9900098766, (2) Website pe form fill karo.</div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Payment kaise hoti hai? <span class="plus">+</span></div><div class="faq-a">UPI (GPay/PhonePe/Paytm) ya Cash on Delivery (COD). COD pe ₹49 extra charges hain.</div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Delivery kitne din me? <span class="plus">+</span></div><div class="faq-a">5 din ke andar. Free shipping ₹699+ pe. Neeche ke order pe ₹50 charges.</div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Return policy? <span class="plus">+</span></div><div class="faq-a">5 din ke andar return. Product unused, tags intact. Exchange nahi hai.</div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Size kaise choose karun? <span class="plus">+</span></div><div class="faq-a">Size Guide section me chart hai. Confusion ho toh WhatsApp pe pooch lo.</div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">COD available hai? <span class="plus">+</span></div><div class="faq-a">Haan! ₹49 extra charges. Order karte waqt COD select kar lena.</div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Bulk order? <span class="plus">+</span></div><div class="faq-a">Bilkul! Bulk order pe special discount. WhatsApp 9900098766.</div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Original product? <span class="plus">+</span></div><div class="faq-a">100% original! Vriante apna khud ka brand hai. Hum khud manufacture karte hain.</div></div>
   </div>
 </section>
 
@@ -411,7 +457,7 @@
     <div class="contact-form">
       <input type="text" id="cName" placeholder="Your Name" required>
       <input type="tel" id="cPhone" placeholder="Phone Number" required>
-      <input type="text" id="cProduct" placeholder="Product (e.g. Black Hoodie)" required>
+      <input type="text" id="cProduct" placeholder="Product" required>
       <input type="text" id="cSize" placeholder="Size (S/M/L/XL/XXL)">
       <input type="text" id="cColor" placeholder="Color">
       <textarea id="cAddress" placeholder="Full Address with Pincode" required></textarea>
@@ -462,9 +508,7 @@
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
-    © 2025 VRIANTE • Made With ❤️ In Agra • All Rights Reserved
-  </div>
+  <div class="footer-bottom">© 2025 VRIANTE • Made With ❤️ In Agra • All Rights Reserved</div>
 </footer>
 
 <!-- WHATSAPP FLOAT -->
@@ -473,46 +517,3 @@
 <!-- QUICK VIEW MODAL -->
 <div class="modal" id="quickViewModal">
   <div class="modal-content quick-view">
-    <span class="modal-close" onclick="closeQuickView()">✕</span>
-    <div class="qv-grid">
-      <img id="qvImg" src="" alt="Product">
-      <div class="qv-info">
-        <span class="qv-cat" id="qvCat"></span>
-        <h3 id="qvTitle"></h3>
-        <p class="qv-price" id="qvPrice"></p>
-        <p class="qv-desc">Premium quality fabric. Made for the uncommon. Available in all sizes.</p>
-        <div class="qv-sizes">
-          <p>Select Size:</p>
-          <div class="size-btns">
-            <button onclick="selectSize(this)">S</button>
-            <button onclick="selectSize(this)">M</button>
-            <button onclick="selectSize(this)">L</button>
-            <button onclick="selectSize(this)">XL</button>
-            <button onclick="selectSize(this)">XXL</button>
-          </div>
-        </div>
-        <button class="qv-buy" onclick="orderFromQuickView()">Order on WhatsApp</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ORDER MODAL -->
-<div class="modal" id="orderModal">
-  <div class="modal-content">
-    <span class="modal-close" onclick="closeModal()">✕</span>
-    <h3 id="modalTitle">Order Product</h3>
-    <img id="modalImg" src="" alt="Product">
-    <p id="modalPrice"></p>
-    <input type="text" id="mName" placeholder="Your Name">
-    <input type="tel" id="mPhone" placeholder="Phone Number">
-    <input type="text" id="mSize" placeholder="Size (S/M/L/XL/XXL)">
-    <input type="text" id="mColor" placeholder="Color">
-    <textarea id="mAddress" placeholder="Full Address"></textarea>
-    <button onclick="sendWhatsApp()">Order on WhatsApp</button>
-  </div>
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>
