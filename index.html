@@ -3,35 +3,33 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>VRIANTE — Made For Uncommon | Premium Clothing</title>
-<meta name="description" content="VRIANTE — Premium clothing from Agra. Shop 400+ T-shirts, shirts, pants, hoodies, footwear at 30% OFF. Free shipping ₹699+. COD available.">
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<title>VRIANTE — Wear The Difference | Premium Clothing</title>
+<meta name="description" content="VRIANTE — Premium clothing from Agra. Wear The Difference. Shop 400+ T-shirts, shirts, pants, hoodies, footwear at 30% OFF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- LOADING SCREEN -->
 <div class="loader" id="loader">
-  <div class="loader-circle"></div>
-  <div class="loader-text">VRIANTE</div>
+  <div class="loader-logo">V R I A N T E</div>
+  <div class="loader-line"></div>
 </div>
-
-<!-- CUSTOM CURSOR -->
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
 
 <!-- SCROLL PROGRESS -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- TOP ANNOUNCEMENT BAR -->
+<!-- ANNOUNCEMENT BAR -->
 <div class="announcement-bar">
   <div class="announcement-content">
-    <span>🔥 MEGA SALE — 30% OFF ON EVERYTHING</span>
     <span>FREE SHIPPING ON ₹699+</span>
+    <span>30% OFF ON EVERYTHING</span>
     <span>COD AVAILABLE</span>
     <span>NEW DROPS WEEKLY</span>
-    <span>🔥 MEGA SALE — 30% OFF ON EVERYTHING</span>
     <span>FREE SHIPPING ON ₹699+</span>
+    <span>30% OFF ON EVERYTHING</span>
     <span>COD AVAILABLE</span>
     <span>NEW DROPS WEEKLY</span>
   </div>
@@ -42,7 +40,7 @@
   <div class="nav-left">
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
   </div>
-  <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">VRI<span>ANTE</span></div>
+  <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">V R I A N T E</div>
   <div class="nav-right">
     <button class="nav-icon" onclick="toggleSearch()" title="Search">🔍</button>
     <button class="nav-icon" onclick="toggleWishlist()" title="Wishlist">♡<span class="wishlist-count" id="wishlistCount">0</span></button>
@@ -64,21 +62,23 @@
     <h2>MENU</h2>
     <a href="#home" onclick="toggleMenu()">Home</a>
     <a href="#collection" onclick="toggleMenu()">Shop All</a>
-    <a href="#sport" onclick="toggleMenu()">Sport</a>
-    <a href="#luxe" onclick="toggleMenu()">Luxe</a>
-    <a href="#street" onclick="toggleMenu()">Street</a>
+    <a href="#collection" onclick="toggleMenu()">T-Shirts</a>
+    <a href="#collection" onclick="toggleMenu()">Shirts</a>
+    <a href="#collection" onclick="toggleMenu()">Pants</a>
+    <a href="#collection" onclick="toggleMenu()">Hoodies</a>
+    <a href="#collection" onclick="toggleMenu()">Footwear</a>
+    <a href="#collection" onclick="toggleMenu()">Accessories</a>
     <a href="#about" onclick="toggleMenu()">About</a>
     <a href="#store" onclick="toggleMenu()">Store</a>
-    <a href="#blog" onclick="toggleMenu()">Journal</a>
     <a href="#contact" onclick="toggleMenu()">Contact</a>
   </div>
   <div class="side-menu-footer">
-    <p>📱 9900098766</p>
+    <p>📱 +91 99000 98766</p>
     <p>📍 Agra, India</p>
     <div class="side-social">
-      <a href="https://instagram.com/vriante" target="_blank">📸</a>
-      <a href="https://facebook.com/vriante" target="_blank">📘</a>
-      <a href="https://wa.me/919900098766" target="_blank">💬</a>
+      <a href="https://instagram.com/vriante" target="_blank">Instagram</a>
+      <a href="https://facebook.com/vriante" target="_blank">Facebook</a>
+      <a href="https://wa.me/919900098766" target="_blank">WhatsApp</a>
     </div>
   </div>
 </div>
@@ -86,7 +86,7 @@
 <!-- CART DRAWER -->
 <div class="cart-drawer" id="cartDrawer">
   <div class="cart-header">
-    <h3>YOUR BAG (<span id="cartItemCount">0</span>)</h3>
+    <h3>SHOPPING BAG (<span id="cartItemCount">0</span>)</h3>
     <span class="close-cart" onclick="toggleCart()">✕</span>
   </div>
   <div class="cart-items" id="cartItems">
@@ -94,7 +94,7 @@
   </div>
   <div class="cart-footer">
     <div class="cart-total">
-      <span>TOTAL:</span>
+      <span>TOTAL</span>
       <span id="cartTotal">₹0</span>
     </div>
     <button class="checkout-btn" onclick="checkoutWhatsApp()">Checkout on WhatsApp</button>
@@ -104,23 +104,17 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-slideshow">
-    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1920')"></div>
-    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=1920')"></div>
-    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1920')"></div>
-  </div>
-  <div class="hero-overlay"></div>
+  <div class="hero-image" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1920')"></div>
   <div class="hero-content">
-    <div class="hero-badge">EST. 2025 • AGRA, INDIA</div>
-    <h1>VRI<span>ANTE</span></h1>
-    <p class="hero-tagline">Made For <strong>Uncommon</strong></p>
-    <p class="hero-sub">PREMIUM CLOTHING • SINCE 2025</p>
+    <div class="hero-label">EST. 2025 • AGRA, INDIA</div>
+    <h1>Wear The <em>Difference</em></h1>
+    <p class="hero-sub">Premium clothing for the uncommon</p>
     <div class="hero-buttons">
       <a href="#collection" class="btn btn-primary">Shop Collection</a>
       <a href="#about" class="btn btn-outline">Our Story</a>
     </div>
   </div>
-  <div class="hero-scroll">SCROLL ↓</div>
+  <div class="hero-scroll">SCROLL</div>
 </section>
 
 <!-- MARQUEE -->
@@ -128,49 +122,46 @@
   <div class="marquee-content">
     <span>FREE SHIPPING ON ₹699+</span>
     <span>PREMIUM QUALITY</span>
-    <span>MADE FOR UNCOMMON</span>
+    <span>WEAR THE DIFFERENCE</span>
     <span>30% OFF</span>
     <span>COD AVAILABLE</span>
     <span>EST. 2025 • AGRA</span>
     <span>FREE SHIPPING ON ₹699+</span>
     <span>PREMIUM QUALITY</span>
-    <span>MADE FOR UNCOMMON</span>
+    <span>WEAR THE DIFFERENCE</span>
     <span>30% OFF</span>
   </div>
 </div>
 
 <!-- SUB-BRANDS -->
-<section class="sub-brands section" id="sport">
+<section class="sub-brands section">
   <div class="section-head">
-    <span class="label">Our Lines</span>
-    <h2>EXPLORE <span class="red">VRIANTE</span> WORLD</h2>
+    <span class="label">Collections</span>
+    <h2>Explore <em>Vriante</em></h2>
     <p>Three collections. One legacy.</p>
   </div>
   <div class="brands-grid">
     <div class="brand-card" onclick="filterProducts('footwear', null)">
-      <div class="brand-bg" style="background-image:url('https://images.unsplash.com/photo-1556906781-9a412961c28c?w=800')"></div>
-      <div class="brand-overlay"></div>
+      <div class="brand-bg" style="background-image:url('https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1000')"></div>
       <div class="brand-info">
-        <h3>VRIANTE <span>SPORT</span></h3>
-        <p>Performance wear for the bold</p>
+        <h3>Vriante <em>Sport</em></h3>
+        <p>Performance wear</p>
         <span class="brand-btn">Explore →</span>
       </div>
     </div>
-    <div class="brand-card" id="luxe" onclick="filterProducts('shirt', null)">
-      <div class="brand-bg" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800')"></div>
-      <div class="brand-overlay"></div>
+    <div class="brand-card" onclick="filterProducts('shirt', null)">
+      <div class="brand-bg" style="background-image:url('https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1000')"></div>
       <div class="brand-info">
-        <h3>VRIANTE <span>LUXE</span></h3>
-        <p>Premium tailored elegance</p>
+        <h3>Vriante <em>Luxe</em></h3>
+        <p>Tailored elegance</p>
         <span class="brand-btn">Explore →</span>
       </div>
     </div>
-    <div class="brand-card" id="street" onclick="filterProducts('hoodie', null)">
-      <div class="brand-bg" style="background-image:url('https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=800')"></div>
-      <div class="brand-overlay"></div>
+    <div class="brand-card" onclick="filterProducts('hoodie', null)">
+      <div class="brand-bg" style="background-image:url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=1000')"></div>
       <div class="brand-info">
-        <h3>VRIANTE <span>STREET</span></h3>
-        <p>Bold streetwear attitude</p>
+        <h3>Vriante <em>Street</em></h3>
+        <p>Streetwear attitude</p>
         <span class="brand-btn">Explore →</span>
       </div>
     </div>
@@ -181,7 +172,7 @@
 <section class="countdown-section">
   <div class="countdown-wrap">
     <div class="countdown-text">
-      <h3>🔥 MEGA SALE</h3>
+      <h3>MEGA SALE</h3>
       <p>30% OFF ON EVERYTHING</p>
     </div>
     <div class="countdown-timer">
@@ -190,15 +181,15 @@
       <div class="time-box"><span id="minutes">45</span><small>MINS</small></div>
       <div class="time-box"><span id="seconds">30</span><small>SECS</small></div>
     </div>
-    <a href="#collection" class="btn btn-primary">Shop Now</a>
+    <a href="#collection" class="btn btn-white">Shop Now</a>
   </div>
 </section>
 
-<!-- COLLECTION WITH SIDEBAR FILTER -->
+<!-- COLLECTION -->
 <section id="collection" class="section collection-section">
   <div class="section-head">
     <span class="label">Shop Now</span>
-    <h2>OUR <span class="red">COLLECTION</span></h2>
+    <h2>Our <em>Collection</em></h2>
     <p>400+ premium products. 30% OFF on everything.</p>
   </div>
 
@@ -239,10 +230,10 @@
         </div>
       </div>
 
-      <button class="clear-filters" onclick="clearFilters()">Clear All Filters</button>
+      <button class="clear-filters" onclick="clearFilters()">Clear All</button>
     </aside>
 
-    <!-- PRODUCTS AREA -->
+    <!-- PRODUCTS -->
     <div class="products-area">
       <div class="products-toolbar">
         <button class="filter-toggle-btn" onclick="toggleFilter()">☰ Filters</button>
@@ -258,7 +249,7 @@
       <div class="products" id="productsGrid"></div>
 
       <div class="load-more-wrap">
-        <button class="load-more-btn" id="loadMoreBtn" onclick="loadMore()">Load More Products</button>
+        <button class="load-more-btn" id="loadMoreBtn" onclick="loadMore()">Load More</button>
       </div>
     </div>
   </div>
@@ -268,12 +259,12 @@
 <section id="store" class="section store-section">
   <div class="section-head">
     <span class="label">Visit Us</span>
-    <h2>OUR <span class="red">STORE</span></h2>
+    <h2>Our <em>Store</em></h2>
     <p>Come experience Vriante in person.</p>
   </div>
   <div class="store-grid">
     <div class="store-card">
-      <div class="store-img" style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800')"></div>
+      <div class="store-img" style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1000')"></div>
       <div class="store-info">
         <h4>VRIANTE FLAGSHIP STORE</h4>
         <p>📍 Main Market, Agra, Uttar Pradesh</p>
@@ -283,17 +274,34 @@
       </div>
     </div>
     <div class="store-map">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3549.9564437398434!2d78.00807531505755!3d27.176670982988534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3974711b1e5e3e4b%3A0x6b0d7e4e3b1e5e4b!2sAgra%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1234567890" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3549.9564437398434!2d78.00807531505755!3d27.176670982988534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3974711b1e5e3e4b%3A0x6b0d7e4e3b1e5e4b!2sAgra%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1234567890" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section about-section">
+  <div class="about-grid">
+    <div class="about-img" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200')"></div>
+    <div class="about-text">
+      <span class="label">About Us</span>
+      <h3>Made For The <em>Uncommon</em></h3>
+      <p>Vriante was born in 2025 from a humble family in Agra with one simple dream — to create something of our own. No shortcuts, no support, just pure passion.</p>
+      <p>Every piece we craft is made for those who refuse to blend in. <strong>Wear The Difference</strong> isn't just a tagline. It's a promise.</p>
+      <div class="about-stats">
+        <div class="stat"><h4>400+</h4><p>Products</p></div>
+        <div class="stat"><h4>4.9★</h4><p>Rating</p></div>
+        <div class="stat"><h4>2025</h4><p>Established</p></div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- GALLERY -->
-<section id="gallery" class="section">
+<section id="gallery" class="section gallery-section">
   <div class="section-head">
     <span class="label">Gallery</span>
-    <h2>STYLE <span class="red">DIARIES</span></h2>
-    <p>Real people. Real style. Real Vriante.</p>
+    <h2>Style <em>Diaries</em></h2>
   </div>
   <div class="gallery">
     <div class="gallery-item"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800" alt="Style 1"></div>
@@ -307,66 +315,32 @@
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="section">
-  <div class="section-head">
-    <span class="label">About Us</span>
-    <h2>THE <span class="red">VRIANTE</span> STORY</h2>
-    <p>From a small dream in Agra to a brand made for the uncommon.</p>
-  </div>
-  <div class="about-grid">
-    <div class="about-text">
-      <h3>WEAR YOUR <span>ATTITUDE</span></h3>
-      <p>Vriante was born in 2025 from a humble family in Agra with one simple dream — to create something of our own. No shortcuts, no support, just pure passion and the will to do something different.</p>
-      <p>We started with a simple idea: premium clothing shouldn't be a luxury. Every piece we craft — from oversized tees to tailored pants, from bold hoodies to classic shirts — is made for those who refuse to blend in.</p>
-      <p><strong style="color:#e63946;">Made For Uncommon</strong> isn't just a tagline. It's a promise.</p>
-      <div class="about-stats">
-        <div class="stat"><h4>400+</h4><p>Products</p></div>
-        <div class="stat"><h4>4.9★</h4><p>Rating</p></div>
-        <div class="stat"><h4>2025</h4><p>Established</p></div>
-      </div>
-    </div>
-    <div class="about-img"></div>
-  </div>
-</section>
-
 <!-- TESTIMONIALS -->
 <section id="reviews" class="section">
   <div class="section-head">
     <span class="label">Testimonials</span>
-    <h2>WHAT CUSTOMERS <span class="red">SAY</span></h2>
-    <p>Real reviews from real customers.</p>
+    <h2>What Customers <em>Say</em></h2>
   </div>
   <div class="testimonials">
     <div class="testimonial">
       <div class="stars">★★★★★</div>
-      <p>"Bhai quality ekdum mast hai! Black hoodie liya, 3 mahine se pehen raha hoon, ek baar bhi color nahi gaya. Vriante zindabad!"</p>
+      <p>"Bhai quality ekdum mast hai! Black hoodie liya, 3 mahine se pehen raha hoon, ek baar bhi color nahi gaya."</p>
       <div class="author"><div class="author-avatar">R</div><div class="author-info"><h5>Rahul Sharma</h5><span>Delhi</span></div></div>
     </div>
     <div class="testimonial">
       <div class="stars">★★★★★</div>
-      <p>"Price ke hisaab se best quality. 30% off me toh steal deal hai. Already 4 t-shirts le chuka hoon. Highly recommended!"</p>
+      <p>"Price ke hisaab se best quality. 30% off me toh steal deal hai. Already 4 t-shirts le chuka hoon."</p>
       <div class="author"><div class="author-avatar">P</div><div class="author-info"><h5>Priya Verma</h5><span>Mumbai</span></div></div>
     </div>
     <div class="testimonial">
       <div class="stars">★★★★★</div>
-      <p>"Delivery time pe aayi, packaging bhi premium thi. Shirt ka fabric ekdum soft hai. Vriante ka fan ho gaya bhai!"</p>
+      <p>"Delivery time pe aayi, packaging bhi premium thi. Shirt ka fabric ekdum soft hai. Vriante ka fan ho gaya!"</p>
       <div class="author"><div class="author-avatar">A</div><div class="author-info"><h5>Aman Khan</h5><span>Agra</span></div></div>
     </div>
     <div class="testimonial">
-      <div class="stars">★★★★☆</div>
-      <p>"Cargo pants liya, fit ekdum perfect. Thoda aur colors aane chahiye. Baaki sab mast hai. COD bhi available hai."</p>
-      <div class="author"><div class="author-avatar">S</div><div class="author-info"><h5>Sneha Patel</h5><span>Bangalore</span></div></div>
-    </div>
-    <div class="testimonial">
       <div class="stars">★★★★★</div>
-      <p>"Made For Uncommon — bilkul sahi tagline hai. Sabse alag designs hain. Friends ne bhi order kar diye mere dekh ke."</p>
+      <p>"Made For Uncommon — bilkul sahi tagline hai. Sabse alag designs hain. Friends ne bhi order kar diye."</p>
       <div class="author"><div class="author-avatar">V</div><div class="author-info"><h5>Vikram Singh</h5><span>Jaipur</span></div></div>
-    </div>
-    <div class="testimonial">
-      <div class="stars">★★★★★</div>
-      <p>"Gareeb family se aake itna mast brand banaya hai, respect! Quality dekh ke laga premium brand hai. Support karo bhai log."</p>
-      <div class="author"><div class="author-avatar">N</div><div class="author-info"><h5>Neha Gupta</h5><span>Lucknow</span></div></div>
     </div>
   </div>
 </section>
@@ -375,34 +349,33 @@
 <section id="blog" class="section blog-section">
   <div class="section-head">
     <span class="label">Journal</span>
-    <h2>STYLE <span class="red">BLOG</span></h2>
-    <p>Fashion tips, trends and style guides.</p>
+    <h2>Style <em>Blog</em></h2>
   </div>
   <div class="blog-grid">
     <div class="blog-card">
-      <div class="blog-img" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600')"></div>
+      <div class="blog-img" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800')"></div>
       <div class="blog-info">
         <span>FASHION TIPS</span>
         <h4>5 Ways To Style An Oversized Tee</h4>
-        <p>Oversized tees are the ultimate streetwear staple. Here's how to rock them...</p>
+        <p>Oversized tees are the ultimate streetwear staple...</p>
         <a href="#">Read More →</a>
       </div>
     </div>
     <div class="blog-card">
-      <div class="blog-img" style="background-image:url('https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=600')"></div>
+      <div class="blog-img" style="background-image:url('https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=800')"></div>
       <div class="blog-info">
         <span>TRENDS</span>
         <h4>Streetwear Trends 2025</h4>
-        <p>From oversized hoodies to cargo pants, here's what's trending this year...</p>
+        <p>From oversized hoodies to cargo pants...</p>
         <a href="#">Read More →</a>
       </div>
     </div>
     <div class="blog-card">
-      <div class="blog-img" style="background-image:url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=600')"></div>
+      <div class="blog-img" style="background-image:url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800')"></div>
       <div class="blog-info">
         <span>STYLE GUIDE</span>
         <h4>How To Build A Capsule Wardrobe</h4>
-        <p>10 essential pieces every man should own. Build a wardrobe that works...</p>
+        <p>10 essential pieces every man should own...</p>
         <a href="#">Read More →</a>
       </div>
     </div>
@@ -413,24 +386,21 @@
 <section id="faq" class="section">
   <div class="section-head">
     <span class="label">FAQ</span>
-    <h2>COMMON <span class="red">QUESTIONS</span></h2>
-    <p>Sab kuch jo jaanna hai.</p>
+    <h2>Common <em>Questions</em></h2>
   </div>
   <div class="faq-container">
-    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Order kaise karun? <span class="plus">+</span></div><div class="faq-a">Do tarike hain — (1) WhatsApp pe direct message karo 9900098766, (2) Website pe form fill karo.</div></div>
-    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Payment kaise hoti hai? <span class="plus">+</span></div><div class="faq-a">UPI (GPay/PhonePe/Paytm) ya Cash on Delivery (COD). COD pe ₹49 extra charges hain.</div></div>
-    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Delivery kitne din me? <span class="plus">+</span></div><div class="faq-a">5 din ke andar. Free shipping ₹699+ pe. Neeche ke order pe ₹50 charges.</div></div>
-    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Return policy? <span class="plus">+</span></div><div class="faq-a">5 din ke andar return. Product unused, tags intact. Exchange nahi hai.</div></div>
-    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Size kaise choose karun? <span class="plus">+</span></div><div class="faq-a">Size Guide section me chart hai. Confusion ho toh WhatsApp pe pooch lo.</div></div>
-    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">COD available hai? <span class="plus">+</span></div><div class="faq-a">Haan! ₹49 extra charges. Order karte waqt COD select kar lena.</div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Order kaise karun? <span class="plus">+</span></div><div class="faq-a">WhatsApp pe 9900098766 pe message karo, ya website pe form fill karo.</div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Payment kaise hoti hai? <span class="plus">+</span></div><div class="faq-a">UPI (GPay/PhonePe/Paytm) ya Cash on Delivery. COD pe ₹49 extra.</div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Delivery kitne din me? <span class="plus">+</span></div><div class="faq-a">5 din ke andar. Free shipping ₹699+ pe.</div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Return policy? <span class="plus">+</span></div><div class="faq-a">5 din ke andar return. Product unused, tags intact.</div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">COD available hai? <span class="plus">+</span></div><div class="faq-a">Haan! ₹49 extra charges. Order karte waqt COD select karo.</div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Bulk order? <span class="plus">+</span></div><div class="faq-a">Bilkul! Bulk order pe special discount. WhatsApp 9900098766.</div></div>
-    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Original product? <span class="plus">+</span></div><div class="faq-a">100% original! Vriante apna khud ka brand hai. Hum khud manufacture karte hain.</div></div>
   </div>
 </section>
 
 <!-- NEWSLETTER -->
 <section class="newsletter">
-  <h2>JOIN THE <span>VRIANTE</span> FAMILY</h2>
+  <h2>Join The <em>Vriante</em> Family</h2>
   <p>New drops, exclusive offers & 30% OFF — sabse pehle paao.</p>
   <form onsubmit="event.preventDefault(); subscribeMsg();">
     <input type="email" placeholder="Enter your email" required>
@@ -439,20 +409,18 @@
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="section">
+<section id="contact" class="section contact-section">
   <div class="section-head">
     <span class="label">Get In Touch</span>
-    <h2>CONTACT <span class="red">US</span></h2>
-    <p>Order karo, sawaal poocho, ya bas hello bolo.</p>
+    <h2>Contact <em>Us</em></h2>
   </div>
   <div class="contact-grid">
     <div class="contact-info">
-      <h3>REACH <span>OUT</span></h3>
-      <div class="contact-item"><div class="contact-icon">📱</div><div><h5>WhatsApp / Call</h5><p>+91 99000 98766</p></div></div>
+      <h3>Reach <em>Out</em></h3>
+      <div class="contact-item"><div class="contact-icon">📱</div><div><h5>WhatsApp</h5><p>+91 99000 98766</p></div></div>
       <div class="contact-item"><div class="contact-icon">✉️</div><div><h5>Email</h5><p>vriante.official@gmail.com</p></div></div>
       <div class="contact-item"><div class="contact-icon">📍</div><div><h5>Location</h5><p>Agra, Uttar Pradesh, India</p></div></div>
       <div class="contact-item"><div class="contact-icon">📸</div><div><h5>Instagram</h5><p>@vriante</p></div></div>
-      <div class="contact-item"><div class="contact-icon">🕒</div><div><h5>Timing</h5><p>Mon-Sat • 10 AM - 8 PM</p></div></div>
     </div>
     <div class="contact-form">
       <input type="text" id="cName" placeholder="Your Name" required>
@@ -470,13 +438,12 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <h3>VRI<span>ANTE</span></h3>
-      <p>Made For Uncommon. Premium clothing from Agra, India. Est. 2025.</p>
+      <h3>V R I A N T E</h3>
+      <p>Wear The Difference. Premium clothing from Agra, India. Est. 2025.</p>
       <div class="footer-social">
-        <a href="https://instagram.com/vriante" target="_blank">📸</a>
-        <a href="https://facebook.com/vriante" target="_blank">📘</a>
-        <a href="https://wa.me/919900098766" target="_blank">💬</a>
-        <a href="mailto:vriante.official@gmail.com">✉️</a>
+        <a href="https://instagram.com/vriante" target="_blank">Instagram</a>
+        <a href="https://facebook.com/vriante" target="_blank">Facebook</a>
+        <a href="https://wa.me/919900098766" target="_blank">WhatsApp</a>
       </div>
     </div>
     <div class="footer-col">
@@ -493,7 +460,7 @@
       <h4>Help</h4>
       <ul>
         <li><a href="#faq">FAQ</a></li>
-        <li><a href="#store">Store Locator</a></li>
+        <li><a href="#store">Store</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="#reviews">Reviews</a></li>
       </ul>
@@ -501,44 +468,43 @@
     <div class="footer-col">
       <h4>Info</h4>
       <ul>
-        <li><a href="#about">About Us</a></li>
+        <li><a href="#about">About</a></li>
         <li><a href="#blog">Blog</a></li>
-        <li><a href="#">Shipping Policy</a></li>
-        <li><a href="#">Return Policy</a></li>
+        <li><a href="#">Shipping</a></li>
+        <li><a href="#">Returns</a></li>
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">© 2025 VRIANTE • Made With ❤️ In Agra • All Rights Reserved</div>
+  <div class="footer-bottom">© 2025 VRIANTE • Made With ❤️ In Agra</div>
 </footer>
 
 <!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/919900098766?text=Hi%20Vriante!%20Mujhe%20order%20karna%20hai." class="whatsapp-float" target="_blank">💬</a>
+<a href="https://wa.me/919900098766?text=Hi%20Vriante!" class="whatsapp-float" target="_blank">💬</a>
 
 <!-- QUICK VIEW MODAL -->
 <div class="modal" id="quickViewModal">
   <div class="modal-content quick-view">
-      <span class="modal-close" onclick="closeQuickView()">✕</span>
-      <div class="qv-grid">
-        <img id="qvImg" src="" alt="Product">
-        <div class="qv-info">
-          <span class="qv-cat" id="qvCat"></span>
-          <h3 id="qvTitle"></h3>
-          <p class="qv-price" id="qvPrice"></p>
-          <p class="qv-desc">Premium quality fabric. Made for the uncommon. Available in all sizes.</p>
-          <div class="qv-sizes">
-            <p>Select Size:</p>
-            <div class="size-btns">
-              <button onclick="selectSize(this)">S</button>
-              <button onclick="selectSize(this)">M</button>
-              <button onclick="selectSize(this)">L</button>
-              <button onclick="selectSize(this)">XL</button>
-              <button onclick="selectSize(this)">XXL</button>
-            </div>
+    <span class="modal-close" onclick="closeQuickView()">✕</span>
+    <div class="qv-grid">
+      <img id="qvImg" src="" alt="Product">
+      <div class="qv-info">
+        <span class="qv-cat" id="qvCat"></span>
+        <h3 id="qvTitle"></h3>
+        <p class="qv-price" id="qvPrice"></p>
+        <p class="qv-desc">Premium quality fabric. Made for the uncommon. Available in all sizes.</p>
+        <div class="qv-sizes">
+          <p>Select Size:</p>
+          <div class="size-btns">
+            <button onclick="selectSize(this)">S</button>
+            <button onclick="selectSize(this)">M</button>
+            <button onclick="selectSize(this)">L</button>
+            <button onclick="selectSize(this)">XL</button>
+            <button onclick="selectSize(this)">XXL</button>
           </div>
-          <div class="qv-actions">
-            <button class="qv-add-cart" onclick="addToCartFromQuickView()">Add To Bag</button>
-            <button class="qv-buy" onclick="orderFromQuickView()">Order on WhatsApp</button>
-          </div>
+        </div>
+        <div class="qv-actions">
+          <button class="qv-add-cart" onclick="addToCartFromQuickView()">Add To Bag</button>
+          <button class="qv-buy" onclick="orderFromQuickView()">Order on WhatsApp</button>
         </div>
       </div>
     </div>
@@ -561,7 +527,7 @@
   </div>
 </div>
 
-<!-- TOAST NOTIFICATION -->
+<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script src="script.js"></script>
