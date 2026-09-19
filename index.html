@@ -1,27 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>VRIANTE — Wear The Difference | Premium Clothing</title>
-<meta name="description" content="VRIANTE — Premium clothing from Agra. Wear The Difference. Shop 400+ T-shirts, shirts, pants, hoodies, footwear at 30% OFF.">
+<title>HOVANS WEAR — Wear The Difference | Premium Clothing</title>
+<meta name="description" content="HOVANS WEAR — Premium clothing from Agra. Wear The Difference. Shop 300+ T-shirts, Shirts, Pants, Sportswear at 30% OFF.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- LOADING SCREEN -->
+<!-- LOADER -->
 <div class="loader" id="loader">
-  <div class="loader-logo">V R I A N T E</div>
+  <div class="loader-logo">HOVANS</div>
   <div class="loader-line"></div>
+  <div class="loader-sub">WEAR</div>
 </div>
 
 <!-- SCROLL PROGRESS -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- ANNOUNCEMENT BAR -->
+<!-- ANNOUNCEMENT -->
 <div class="announcement-bar">
   <div class="announcement-content">
     <span>FREE SHIPPING ON ₹699+</span>
@@ -40,11 +41,21 @@
   <div class="nav-left">
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
   </div>
-  <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">V R I A N T E</div>
+  <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    HOVANS <span>WEAR</span>
+  </div>
   <div class="nav-right">
-    <button class="nav-icon" onclick="toggleSearch()" title="Search">🔍</button>
-    <button class="nav-icon" onclick="toggleWishlist()" title="Wishlist">♡<span class="wishlist-count" id="wishlistCount">0</span></button>
-    <button class="nav-icon cart-icon" onclick="toggleCart()" title="Cart">🛍<span class="cart-count" id="cartCount">0</span></button>
+    <button class="nav-icon" onclick="toggleSearch()" title="Search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </button>
+    <button class="nav-icon" onclick="toggleWishlist()" title="Wishlist">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span class="wishlist-count" id="wishlistCount">0</span>
+    </button>
+    <button class="nav-icon cart-icon" onclick="toggleCart()" title="Bag">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
   </div>
 </nav>
 
@@ -65,19 +76,18 @@
     <a href="#collection" onclick="toggleMenu()">T-Shirts</a>
     <a href="#collection" onclick="toggleMenu()">Shirts</a>
     <a href="#collection" onclick="toggleMenu()">Pants</a>
-    <a href="#collection" onclick="toggleMenu()">Hoodies</a>
-    <a href="#collection" onclick="toggleMenu()">Footwear</a>
-    <a href="#collection" onclick="toggleMenu()">Accessories</a>
+    <a href="#collection" onclick="toggleMenu()">Sportswear</a>
     <a href="#about" onclick="toggleMenu()">About</a>
     <a href="#store" onclick="toggleMenu()">Store</a>
+    <a href="#blog" onclick="toggleMenu()">Journal</a>
     <a href="#contact" onclick="toggleMenu()">Contact</a>
   </div>
   <div class="side-menu-footer">
-    <p>📱 +91 99000 98766</p>
-    <p>📍 Agra, India</p>
+    <p>+91 99000 98766</p>
+    <p>Agra, India</p>
     <div class="side-social">
-      <a href="https://instagram.com/vriante" target="_blank">Instagram</a>
-      <a href="https://facebook.com/vriante" target="_blank">Facebook</a>
+      <a href="https://instagram.com/hovanswear" target="_blank">Instagram</a>
+      <a href="https://facebook.com/hovanswear" target="_blank">Facebook</a>
       <a href="https://wa.me/919900098766" target="_blank">WhatsApp</a>
     </div>
   </div>
@@ -104,11 +114,17 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-image" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1920')"></div>
+  <div class="hero-slideshow">
+    <div class="hero-slide active" style="background-image:url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1920')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=1920')"></div>
+    <div class="hero-slide" style="background-image:url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1920')"></div>
+  </div>
+  <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-label">EST. 2025 • AGRA, INDIA</div>
-    <h1>Wear The <em>Difference</em></h1>
-    <p class="hero-sub">Premium clothing for the uncommon</p>
+    <h1>HOVANS <em>WEAR</em></h1>
+    <p class="hero-tagline">Wear The <strong>Difference</strong></p>
+    <p class="hero-sub">PREMIUM CLOTHING • SINCE 2025</p>
     <div class="hero-buttons">
       <a href="#collection" class="btn btn-primary">Shop Collection</a>
       <a href="#about" class="btn btn-outline">Our Story</a>
@@ -133,35 +149,43 @@
   </div>
 </div>
 
-<!-- SUB-BRANDS -->
+<!-- CATEGORIES -->
 <section class="sub-brands section">
   <div class="section-head">
     <span class="label">Collections</span>
-    <h2>Explore <em>Vriante</em></h2>
-    <p>Three collections. One legacy.</p>
+    <h2>Explore <em>Hovans</em></h2>
+    <p>Four collections. One legacy.</p>
   </div>
   <div class="brands-grid">
-    <div class="brand-card" onclick="filterProducts('footwear', null)">
-      <div class="brand-bg" style="background-image:url('https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1000')"></div>
+    <div class="brand-card" onclick="filterProducts('tshirt', null)">
+      <div class="brand-bg" style="background-image:url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=1000')"></div>
       <div class="brand-info">
-        <h3>Vriante <em>Sport</em></h3>
-        <p>Performance wear</p>
+        <h3>Hovans <em>T-Shirts</em></h3>
+        <p>Premium cotton comfort</p>
         <span class="brand-btn">Explore →</span>
       </div>
     </div>
     <div class="brand-card" onclick="filterProducts('shirt', null)">
-      <div class="brand-bg" style="background-image:url('https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=1000')"></div>
+      <div class="brand-bg" style="background-image:url('https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=1000')"></div>
       <div class="brand-info">
-        <h3>Vriante <em>Luxe</em></h3>
+        <h3>Hovans <em>Shirts</em></h3>
         <p>Tailored elegance</p>
         <span class="brand-btn">Explore →</span>
       </div>
     </div>
-    <div class="brand-card" onclick="filterProducts('hoodie', null)">
-      <div class="brand-bg" style="background-image:url('https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=1000')"></div>
+    <div class="brand-card" onclick="filterProducts('pant', null)">
+      <div class="brand-bg" style="background-image:url('https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=1000')"></div>
       <div class="brand-info">
-        <h3>Vriante <em>Street</em></h3>
-        <p>Streetwear attitude</p>
+        <h3>Hovans <em>Pants</em></h3>
+        <p>Crafted for the bold</p>
+        <span class="brand-btn">Explore →</span>
+      </div>
+    </div>
+    <div class="brand-card" onclick="filterProducts('sportswear', null)">
+      <div class="brand-bg" style="background-image:url('https://images.unsplash.com/photo-1556906781-9a412961c28c?w=1000')"></div>
+      <div class="brand-info">
+        <h3>Hovans <em>Sportswear</em></h3>
+        <p>Performance wear</p>
         <span class="brand-btn">Explore →</span>
       </div>
     </div>
@@ -190,11 +214,10 @@
   <div class="section-head">
     <span class="label">Shop Now</span>
     <h2>Our <em>Collection</em></h2>
-    <p>400+ premium products. 30% OFF on everything.</p>
+    <p>300+ premium products. 30% OFF on everything.</p>
   </div>
 
   <div class="shop-layout">
-    <!-- FILTER SIDEBAR -->
     <aside class="filter-sidebar" id="filterSidebar">
       <div class="filter-header">
         <h3>FILTERS</h3>
@@ -206,9 +229,7 @@
         <label><input type="checkbox" value="tshirt" onchange="applyFilters()"> T-Shirts</label>
         <label><input type="checkbox" value="shirt" onchange="applyFilters()"> Shirts</label>
         <label><input type="checkbox" value="pant" onchange="applyFilters()"> Pants</label>
-        <label><input type="checkbox" value="hoodie" onchange="applyFilters()"> Hoodies</label>
-        <label><input type="checkbox" value="footwear" onchange="applyFilters()"> Footwear</label>
-        <label><input type="checkbox" value="accessory" onchange="applyFilters()"> Accessories</label>
+        <label><input type="checkbox" value="sportswear" onchange="applyFilters()"> Sportswear</label>
       </div>
 
       <div class="filter-group">
@@ -233,7 +254,6 @@
       <button class="clear-filters" onclick="clearFilters()">Clear All</button>
     </aside>
 
-    <!-- PRODUCTS -->
     <div class="products-area">
       <div class="products-toolbar">
         <button class="filter-toggle-btn" onclick="toggleFilter()">☰ Filters</button>
@@ -260,16 +280,16 @@
   <div class="section-head">
     <span class="label">Visit Us</span>
     <h2>Our <em>Store</em></h2>
-    <p>Come experience Vriante in person.</p>
+    <p>Come experience Hovans in person.</p>
   </div>
   <div class="store-grid">
     <div class="store-card">
       <div class="store-img" style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1000')"></div>
       <div class="store-info">
-        <h4>VRIANTE FLAGSHIP STORE</h4>
-        <p>📍 Main Market, Agra, Uttar Pradesh</p>
-        <p>🕒 Mon-Sat: 10 AM - 8 PM</p>
-        <p>📱 +91 99000 98766</p>
+        <h4>HOVANS WEAR FLAGSHIP STORE</h4>
+        <p>Main Market, Agra, Uttar Pradesh</p>
+        <p>Mon-Sat: 10 AM - 8 PM</p>
+        <p>+91 99000 98766</p>
         <a href="https://wa.me/919900098766" target="_blank" class="btn btn-primary">Get Directions</a>
       </div>
     </div>
@@ -286,10 +306,10 @@
     <div class="about-text">
       <span class="label">About Us</span>
       <h3>Made For The <em>Uncommon</em></h3>
-      <p>Vriante was born in 2025 from a humble family in Agra with one simple dream — to create something of our own. No shortcuts, no support, just pure passion.</p>
+      <p>Hovans Wear was born in 2025 from a humble family in Agra with one simple dream — to create something of our own. No shortcuts, no support, just pure passion.</p>
       <p>Every piece we craft is made for those who refuse to blend in. <strong>Wear The Difference</strong> isn't just a tagline. It's a promise.</p>
       <div class="about-stats">
-        <div class="stat"><h4>400+</h4><p>Products</p></div>
+        <div class="stat"><h4>300+</h4><p>Products</p></div>
         <div class="stat"><h4>4.9★</h4><p>Rating</p></div>
         <div class="stat"><h4>2025</h4><p>Established</p></div>
       </div>
@@ -324,22 +344,22 @@
   <div class="testimonials">
     <div class="testimonial">
       <div class="stars">★★★★★</div>
-      <p>"Bhai quality ekdum mast hai! Black hoodie liya, 3 mahine se pehen raha hoon, ek baar bhi color nahi gaya."</p>
+      <p>"Bhai quality ekdum mast hai! Black hoodie liya, 3 mahine se pehen raha hoon, ek baar bhi color nahi gaya. Hovans zindabad!"</p>
       <div class="author"><div class="author-avatar">R</div><div class="author-info"><h5>Rahul Sharma</h5><span>Delhi</span></div></div>
     </div>
     <div class="testimonial">
       <div class="stars">★★★★★</div>
-      <p>"Price ke hisaab se best quality. 30% off me toh steal deal hai. Already 4 t-shirts le chuka hoon."</p>
+      <p>"Price ke hisaab se best quality. 30% off me toh steal deal hai. Already 4 t-shirts le chuka hoon. Highly recommended!"</p>
       <div class="author"><div class="author-avatar">P</div><div class="author-info"><h5>Priya Verma</h5><span>Mumbai</span></div></div>
     </div>
     <div class="testimonial">
       <div class="stars">★★★★★</div>
-      <p>"Delivery time pe aayi, packaging bhi premium thi. Shirt ka fabric ekdum soft hai. Vriante ka fan ho gaya!"</p>
+      <p>"Delivery time pe aayi, packaging bhi premium thi. Shirt ka fabric ekdum soft hai. Hovans ka fan ho gaya bhai!"</p>
       <div class="author"><div class="author-avatar">A</div><div class="author-info"><h5>Aman Khan</h5><span>Agra</span></div></div>
     </div>
     <div class="testimonial">
       <div class="stars">★★★★★</div>
-      <p>"Made For Uncommon — bilkul sahi tagline hai. Sabse alag designs hain. Friends ne bhi order kar diye."</p>
+      <p>"Wear The Difference — bilkul sahi tagline hai. Sabse alag designs hain. Friends ne bhi order kar diye."</p>
       <div class="author"><div class="author-avatar">V</div><div class="author-info"><h5>Vikram Singh</h5><span>Jaipur</span></div></div>
     </div>
   </div>
@@ -389,10 +409,10 @@
     <h2>Common <em>Questions</em></h2>
   </div>
   <div class="faq-container">
-    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Order kaise karun? <span class="plus">+</span></div><div class="faq-a">WhatsApp pe 9900098766 pe message karo, ya website pe form fill karo.</div></div>
-    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Payment kaise hoti hai? <span class="plus">+</span></div><div class="faq-a">UPI (GPay/PhonePe/Paytm) ya Cash on Delivery. COD pe ₹49 extra.</div></div>
-    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Delivery kitne din me? <span class="plus">+</span></div><div class="faq-a">5 din ke andar. Free shipping ₹699+ pe.</div></div>
-    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Return policy? <span class="plus">+</span></div><div class="faq-a">5 din ke andar return. Product unused, tags intact.</div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Order kaise karun? <span class="plus">+</span></div><div class="faq-a">WhatsApp pe 9900098766 pe message karo. Bas product ka naam, size aur address bhej do — order confirm ho jayega.</div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Payment kaise hoti hai? <span class="plus">+</span></div><div class="faq-a">UPI (GPay/PhonePe/Paytm) ya Cash on Delivery. COD pe ₹49 extra charges hain.</div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Delivery kitne din me? <span class="plus">+</span></div><div class="faq-a">5 din ke andar aapke address pe pahunch jati hai. Free shipping ₹699+ ke order pe.</div></div>
+    <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Return policy? <span class="plus">+</span></div><div class="faq-a">5 din ke andar return. Product unused, tags intact hone chahiye.</div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">COD available hai? <span class="plus">+</span></div><div class="faq-a">Haan! ₹49 extra charges. Order karte waqt COD select karo.</div></div>
     <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q">Bulk order? <span class="plus">+</span></div><div class="faq-a">Bilkul! Bulk order pe special discount. WhatsApp 9900098766.</div></div>
   </div>
@@ -400,7 +420,7 @@
 
 <!-- NEWSLETTER -->
 <section class="newsletter">
-  <h2>Join The <em>Vriante</em> Family</h2>
+  <h2>Join The <em>Hovans</em> Family</h2>
   <p>New drops, exclusive offers & 30% OFF — sabse pehle paao.</p>
   <form onsubmit="event.preventDefault(); subscribeMsg();">
     <input type="email" placeholder="Enter your email" required>
@@ -408,28 +428,30 @@
   </form>
 </section>
 
-<!-- CONTACT -->
+<!-- CONTACT (Sirf WhatsApp) -->
 <section id="contact" class="section contact-section">
   <div class="section-head">
     <span class="label">Get In Touch</span>
     <h2>Contact <em>Us</em></h2>
+    <p>Order karo ya sawaal poocho — WhatsApp pe.</p>
   </div>
   <div class="contact-grid">
     <div class="contact-info">
       <h3>Reach <em>Out</em></h3>
       <div class="contact-item"><div class="contact-icon">📱</div><div><h5>WhatsApp</h5><p>+91 99000 98766</p></div></div>
-      <div class="contact-item"><div class="contact-icon">✉️</div><div><h5>Email</h5><p>vriante.official@gmail.com</p></div></div>
+      <div class="contact-item"><div class="contact-icon">✉️</div><div><h5>Email</h5><p>hovanswear@gmail.com</p></div></div>
       <div class="contact-item"><div class="contact-icon">📍</div><div><h5>Location</h5><p>Agra, Uttar Pradesh, India</p></div></div>
-      <div class="contact-item"><div class="contact-icon">📸</div><div><h5>Instagram</h5><p>@vriante</p></div></div>
+      <div class="contact-item"><div class="contact-icon">📸</div><div><h5>Instagram</h5><p>@hovanswear</p></div></div>
+      <div class="contact-item"><div class="contact-icon">🕒</div><div><h5>Timing</h5><p>Mon-Sat • 10 AM - 8 PM</p></div></div>
     </div>
-    <div class="contact-form">
-      <input type="text" id="cName" placeholder="Your Name" required>
-      <input type="tel" id="cPhone" placeholder="Phone Number" required>
-      <input type="text" id="cProduct" placeholder="Product" required>
-      <input type="text" id="cSize" placeholder="Size (S/M/L/XL/XXL)">
-      <input type="text" id="cColor" placeholder="Color">
-      <textarea id="cAddress" placeholder="Full Address with Pincode" required></textarea>
-      <button onclick="submitOrder()">Send Order on WhatsApp</button>
+    <div class="contact-whatsapp">
+      <div class="whatsapp-icon">💬</div>
+      <h3>Order on WhatsApp</h3>
+      <p>Bas ek click — aur order confirm!</p>
+      <p class="whatsapp-number">+91 99000 98766</p>
+      <a href="https://wa.me/919900098766?text=Hi%20Hovans%20Wear!%20Mujhe%20order%20karna%20hai." target="_blank" class="whatsapp-btn">
+        Open WhatsApp
+      </a>
     </div>
   </div>
 </section>
@@ -438,11 +460,11 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <h3>V R I A N T E</h3>
+      <h3>HOVANS <span>WEAR</span></h3>
       <p>Wear The Difference. Premium clothing from Agra, India. Est. 2025.</p>
       <div class="footer-social">
-        <a href="https://instagram.com/vriante" target="_blank">Instagram</a>
-        <a href="https://facebook.com/vriante" target="_blank">Facebook</a>
+        <a href="https://instagram.com/hovanswear" target="_blank">Instagram</a>
+        <a href="https://facebook.com/hovanswear" target="_blank">Facebook</a>
         <a href="https://wa.me/919900098766" target="_blank">WhatsApp</a>
       </div>
     </div>
@@ -452,8 +474,7 @@
         <li><a href="#collection">T-Shirts</a></li>
         <li><a href="#collection">Shirts</a></li>
         <li><a href="#collection">Pants</a></li>
-        <li><a href="#collection">Hoodies</a></li>
-        <li><a href="#collection">Footwear</a></li>
+        <li><a href="#collection">Sportswear</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -475,11 +496,13 @@
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">© 2025 VRIANTE • Made With ❤️ In Agra</div>
+  <div class="footer-bottom">© 2025 HOVANS WEAR • Made With ❤️ In Agra</div>
 </footer>
 
 <!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/919900098766?text=Hi%20Vriante!" class="whatsapp-float" target="_blank">💬</a>
+<a href="https://wa.me/919900098766?text=Hi%20Hovans%20Wear!" class="whatsapp-float" target="_blank">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11 1.654z"/></svg>
+</a>
 
 <!-- QUICK VIEW MODAL -->
 <div class="modal" id="quickViewModal">
