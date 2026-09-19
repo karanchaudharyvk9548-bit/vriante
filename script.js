@@ -5,8 +5,7 @@ window.addEventListener('load', () => {
     const loader = document.getElementById('loader');
     if (loader) loader.classList.add('hide');
     document.body.classList.remove('loading');
-    // Reveal on scroll
-    document.querySelectorAll('.section, .section-head, .brand-card, .blog-card, .testimonial, .about-grid, .store-card').forEach(el => {
+    document.querySelectorAll('.section, .section-head, .brand-card, .blog-card, .testimonial, .about-grid, .store-card, .about-img').forEach(el => {
       el.classList.add('reveal');
       observer.observe(el);
     });
@@ -14,27 +13,8 @@ window.addEventListener('load', () => {
       renderProducts();
       updateCountdown();
     }, 300);
-  }, 1500);
+  }, 1800);
 });
-
-// ===== CURSOR =====
-const cursorDot = document.getElementById('cursorDot');
-const cursorRing = document.getElementById('cursorRing');
-if (cursorDot && cursorRing) {
-  document.addEventListener('mousemove', (e) => {
-    cursorDot.style.left = e.clientX + 'px';
-    cursorDot.style.top = e.clientY + 'px';
-    setTimeout(() => {
-      cursorRing.style.left = e.clientX + 'px';
-      cursorRing.style.top = e.clientY + 'px';
-    }, 40);
-  });
-  const hoverEls = document.querySelectorAll('a, button, .product, .brand-card, .blog-card, input, select, .filter-btn');
-  hoverEls.forEach(el => {
-    el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
-    el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
-  });
-}
 
 // ===== SCROLL EFFECTS =====
 window.addEventListener('scroll', () => {
@@ -82,7 +62,7 @@ function liveSearch() {
       <h5>${p.name}</h5>
       <p>₹${p.price}</p>
     </div>
-  `).join('') || '<p style="color:#888;text-align:center;grid-column:1/-1;">No products found</p>';
+  `).join('') || '<p style="color:#64748b;text-align:center;grid-column:1/-1;padding:40px;letter-spacing:2px;">No products found</p>';
 }
 
 // ===== CART =====
@@ -117,7 +97,7 @@ function updateCartUI() {
         <img src="${item.img}" alt="${item.name}">
         <div class="cart-item-info">
           <h5>${item.name}</h5>
-          <small>Size: ${item.size} • Qty: 1</small>
+          <small>Size: ${item.size}</small>
           <p>₹${item.price}</p>
         </div>
         <button class="cart-item-remove" onclick="removeFromCart(${i})">✕</button>
@@ -130,7 +110,7 @@ function addToCart(product, size) {
   if (!size) { showToast('Please select size first'); return; }
   cart.push({ ...product, size });
   saveCart();
-  showToast('✓ Added to bag');
+  showToast('Added to bag');
 }
 function removeFromCart(i) {
   cart.splice(i, 1);
@@ -151,7 +131,7 @@ function checkoutWhatsApp() {
 
 // ===== WISHLIST =====
 function toggleWishlist() {
-  showToast(`❤️ Wishlist: ${wishlist.length} items`);
+  showToast(`Wishlist: ${wishlist.length} items`);
 }
 function updateWishlistUI() {
   const count = document.getElementById('wishlistCount');
@@ -167,12 +147,8 @@ function showToast(msg) {
   setTimeout(() => toast.classList.remove('show'), 2500);
 }
 
-// ===== SIDE MENU & CART OVERLAY CLOSE =====
+// ===== KEYBOARD & OUTSIDE CLICK =====
 document.addEventListener('click', (e) => {
-  const sm = document.getElementById('sideMenu');
-  if (sm && sm.classList.contains('active') && !sm.contains(e.target) && !e.target.closest('.menu-toggle')) {
-    // sm.classList.remove('active');
-  }
   const qv = document.getElementById('quickViewModal');
   const om = document.getElementById('orderModal');
   if (e.target === qv) closeQuickView();
@@ -189,9 +165,9 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// ===== FAQ =====
+// ===== FAQ & NEWSLETTER =====
 function toggleFaq(el) { el.classList.toggle('active'); }
-function subscribeMsg() { showToast('✓ Subscribed! Check your email'); }
+function subscribeMsg() { showToast('Subscribed! Check your email'); }
 
 // ===== COUNTDOWN =====
 function updateCountdown() {
@@ -213,17 +189,7 @@ function updateCountdown() {
   if (mEl) mEl.textContent = String(m).padStart(2,'0');
   if (sEl) sEl.textContent = String(s).padStart(2,'0');
 }
-setInterval(updateCountdown, 1000);
-
-// ===== HERO SLIDESHOW =====
-let currentSlide = 0;
-setInterval(() => {
-  const slides = document.querySelectorAll('.hero-slide');
-  if (!slides.length) return;
-  slides[currentSlide].classList.remove('active');
-  currentSlide = (currentSlide + 1) % slides.length;
-  slides[currentSlide].classList.add('active');
-}, 6000);// ===== PRODUCT IMAGES =====
+setInterval(updateCountdown, 1000);// ===== PRODUCT IMAGES =====
 const productImages = {
   tshirt: [
     'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600',
@@ -236,8 +202,8 @@ const productImages = {
     'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600',
     'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600',
     'https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=600',
-    'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=600',
-    'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600'
+    'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600',
+    'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600'
   ],
   shirt: [
     'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600',
@@ -247,9 +213,7 @@ const productImages = {
     'https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?w=600',
     'https://images.unsplash.com/photo-1603252109303-2751441dd157?w=600',
     'https://images.unsplash.com/photo-1604695573706-53170668f6a6?w=600',
-    'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600',
-    'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600',
-    'https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?w=600'
+    'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600'
   ],
   pant: [
     'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600',
@@ -258,8 +222,8 @@ const productImages = {
     'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600',
     'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=600',
     'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600',
-    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600',
-    'https://images.unsplash.com/photo-1517438476312-10d79c077509?w=600'
+    'https://images.unsplash.com/photo-1517438476312-10d79c077509?w=600',
+    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600'
   ],
   hoodie: [
     'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600',
@@ -349,7 +313,7 @@ function getOriginalPrice(discountedPrice) {
   return Math.round(discountedPrice / 0.7);
 }
 
-// ===== FILTER TOGGLE =====
+// ===== FILTER =====
 function toggleFilter() {
   document.getElementById('filterSidebar').classList.toggle('active');
 }
@@ -362,6 +326,7 @@ function clearFilters() {
   document.querySelectorAll('.size-filter button').forEach(b => b.classList.remove('active'));
   activeFilters = { categories: [], price: null, sizes: [] };
   currentFilter = 'all';
+  visibleCount = 16;
   renderProducts();
 }
 function applyFilters() {
@@ -377,28 +342,20 @@ function sortProducts(val) {
   renderProducts();
 }
 
-// ===== GET FILTERED =====
 function getFilteredProducts() {
   let filtered = [...allProducts];
-
-  // Category filter (sidebar)
   if (activeFilters.categories.length > 0) {
     filtered = filtered.filter(p => activeFilters.categories.includes(p.cat));
   } else if (currentFilter !== 'all') {
     filtered = filtered.filter(p => p.cat === currentFilter);
   }
-
-  // Price filter
   if (activeFilters.price) {
     const [min, max] = activeFilters.price.split('-').map(Number);
     filtered = filtered.filter(p => p.price >= min && p.price <= max);
   }
-
-  // Sort
   if (currentSort === 'low') filtered.sort((a,b) => a.price - b.price);
   else if (currentSort === 'high') filtered.sort((a,b) => b.price - a.price);
   else if (currentSort === 'new') filtered.sort((a,b) => b.id - a.id);
-
   return filtered;
 }
 
@@ -416,7 +373,7 @@ function renderProducts() {
   }
 
   if (toShow.length === 0) {
-    grid.innerHTML = '<p style="color:#888;grid-column:1/-1;text-align:center;padding:60px 20px;letter-spacing:2px;">No products found. Try different filters.</p>';
+    grid.innerHTML = '<p style="color:#64748b;grid-column:1/-1;text-align:center;padding:80px 20px;letter-spacing:2px;text-transform:uppercase;font-size:12px;">No products found</p>';
     const btn = document.getElementById('loadMoreBtn');
     if (btn) btn.style.display = 'none';
     return;
@@ -454,13 +411,6 @@ function renderProducts() {
     }
   }
   document.querySelectorAll('.product').forEach(el => observer.observe(el));
-  // Recursor cursor hover for new products
-  if (cursorRing) {
-    document.querySelectorAll('.product').forEach(el => {
-      el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
-      el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
-    });
-  }
 }
 
 function filterProducts(cat, el) {
@@ -474,7 +424,6 @@ function filterProducts(cat, el) {
     document.getElementById('collection').scrollIntoView({ behavior: 'smooth' });
   }
 }
-
 function loadMore() { visibleCount += 16; renderProducts(); }
 
 // ===== QUICK VIEW =====
@@ -486,7 +435,7 @@ function openQuickView(id) {
   document.getElementById('qvImg').src = p.img;
   document.getElementById('qvCat').textContent = getCatName(p.cat);
   document.getElementById('qvTitle').textContent = p.name;
-  document.getElementById('qvPrice').innerHTML = `₹${p.price} <small style="color:#666;text-decoration:line-through;font-size:16px;">₹${getOriginalPrice(p.price)}</small>`;
+  document.getElementById('qvPrice').innerHTML = `₹${p.price} <small style="color:#64748b;text-decoration:line-through;font-size:16px;">₹${getOriginalPrice(p.price)}</small>`;
   document.querySelectorAll('.size-btns button').forEach(b => b.classList.remove('active'));
   document.getElementById('quickViewModal').classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -519,7 +468,7 @@ function openModal(id) {
   if (!currentProduct) return;
   document.getElementById('modalTitle').textContent = currentProduct.name;
   document.getElementById('modalImg').src = currentProduct.img;
-  document.getElementById('modalPrice').innerHTML = `₹${currentProduct.price} <small style="color:#666;text-decoration:line-through;font-size:14px;">₹${getOriginalPrice(currentProduct.price)}</small>`;
+  document.getElementById('modalPrice').innerHTML = `₹${currentProduct.price} <small style="color:#64748b;text-decoration:line-through;font-size:14px;">₹${getOriginalPrice(currentProduct.price)}</small>`;
   document.getElementById('orderModal').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -555,5 +504,5 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     updateCartUI();
     updateWishlistUI();
-  }, 1700);
+  }, 2000);
 });
