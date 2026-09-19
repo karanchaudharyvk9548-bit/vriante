@@ -66,15 +66,15 @@ function liveSearch() {
 }
 
 // ===== CART =====
-let cart = JSON.parse(localStorage.getItem('vriante_cart') || '[]');
-let wishlist = JSON.parse(localStorage.getItem('vriante_wishlist') || '[]');
+let cart = JSON.parse(localStorage.getItem('hovans_cart') || '[]');
+let wishlist = JSON.parse(localStorage.getItem('hovans_wishlist') || '[]');
 
 function toggleCart() {
   document.getElementById('cartDrawer').classList.toggle('active');
   document.getElementById('cartOverlay').classList.toggle('active');
 }
 function saveCart() {
-  localStorage.setItem('vriante_cart', JSON.stringify(cart));
+  localStorage.setItem('hovans_cart', JSON.stringify(cart));
   updateCartUI();
 }
 function updateCartUI() {
@@ -119,7 +119,7 @@ function removeFromCart(i) {
 }
 function checkoutWhatsApp() {
   if (cart.length === 0) { showToast('Bag is empty'); return; }
-  let msg = 'Hi Vriante! I want to order:%0A%0A';
+  let msg = 'Hi Hovans Wear! I want to order:%0A%0A';
   let total = 0;
   cart.forEach((item, i) => {
     msg += `*${i+1}.* ${item.name}%0A   Size: ${item.size}%0A   Price: ₹${item.price}%0A%0A`;
@@ -189,7 +189,17 @@ function updateCountdown() {
   if (mEl) mEl.textContent = String(m).padStart(2,'0');
   if (sEl) sEl.textContent = String(s).padStart(2,'0');
 }
-setInterval(updateCountdown, 1000);// ===== PRODUCT IMAGES =====
+setInterval(updateCountdown, 1000);
+
+// ===== HERO SLIDESHOW =====
+let currentSlide = 0;
+setInterval(() => {
+  const slides = document.querySelectorAll('.hero-slide');
+  if (!slides.length) return;
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+}, 6000);// ===== PRODUCT IMAGES (HOVANS WEAR - 4 CATEGORIES) =====
 const productImages = {
   tshirt: [
     'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600',
@@ -225,57 +235,35 @@ const productImages = {
     'https://images.unsplash.com/photo-1517438476312-10d79c077509?w=600',
     'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600'
   ],
-  hoodie: [
-    'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600',
-    'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600',
-    'https://images.unsplash.com/photo-1578681994506-b8f463449011?w=600',
-    'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600',
-    'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600',
-    'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600'
-  ],
-  footwear: [
-    'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600',
-    'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=600',
-    'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=600',
-    'https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=600',
-    'https://images.unsplash.com/photo-1552346154-21d32810aba3?w=600',
-    'https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=600',
-    'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600',
-    'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=600'
-  ],
-  accessory: [
-    'https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600',
-    'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600',
-    'https://images.unsplash.com/photo-1620625515032-6ed0c1790c75?w=600',
-    'https://images.unsplash.com/photo-1591348278863-a8fb3887e2aa?w=600',
-    'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600',
-    'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600',
-    'https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?w=600',
-    'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600'
+  sportswear: [
+    'https://images.unsplash.com/photo-1556906781-9a412961c28c?w=600',
+    'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600',
+    'https://images.unsplash.com/photo-1594381898411-846e7d193883?w=600',
+    'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600',
+    'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600',
+    'https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=600',
+    'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600',
+    'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600'
   ]
 };
 
-// ===== PRODUCT NAMES =====
+// ===== PRODUCT NAMES (HOVANS WEAR) =====
 const productNames = {
-  tshirt: ['Oversized Black Tee','Red Graphic Tee','White Classic Tee','Green Drop Shoulder','Black Printed Tee','Red Oversized Tee','White Oversized Tee','Green Graphic Tee','Black Minimal Tee','Red Polo Tee','White Striped Tee','Green Polo Tee','Black V-Neck Tee','Red Round Neck','Premium Full Sleeve','White Henley Tee','Green Acid Wash','Black Tie-Dye','Red Signature Tee','Premium Cotton Tee'],
-  shirt: ['Classic Black Shirt','Casual White Shirt','Red Check Shirt','Green Check Shirt','Black Formal Shirt','White Formal Shirt','Blue Denim Shirt','Red Flannel Shirt','Green Linen Shirt','Black Casual Shirt','White Linen Shirt','Red Formal Shirt','Green Casual Shirt','Black Striped Shirt','White Striped Shirt','Blue Oxford Shirt','Red Casual Shirt','Green Formal Shirt','Black Party Shirt','White Party Shirt','Red Satin Shirt','Green Satin Shirt','Black Silk Shirt','White Silk Shirt','Denim Casual Shirt','Red Denim Shirt','Green Denim Shirt','Black OverShirt','White OverShirt','Premium Signature Shirt'],
-  pant: ['Cargo Street Pants','Slim Fit Denim','Black Cargo Pants','Blue Denim Jeans','Grey Track Pants','Black Formal Trousers','Beige Chinos','Olive Cargo Pants','Black Denim Jeans','White Chinos','Navy Trousers','Grey Formal Pants','Black Joggers','Red Track Pants','Green Cargo Pants','Blue Slim Jeans','Black Slim Jeans','Grey Joggers','Beige Cargo Pants','Black Chinos','Brown Chinos','Navy Cargo Pants','Ripped Denim','Black Track Pants','Olive Chinos','Grey Cargo Pants','Blue Denim Shorts','Black Denim Shorts','White Track Pants','Premium Wool Trousers','Black Leather Pants','Beige Linen Pants','Blue Cargo Pants','Green Joggers','Red Joggers','Navy Formal Pants','Brown Leather Pants','Grey Wool Trousers','Premium Cargo Pants','Designer Denim Jeans'],
-  hoodie: ['Premium Black Hoodie','Oversized Zip Hoodie','Red Pullover Hoodie','Green Hoodie','White Hoodie','Black Printed Hoodie','Red Zip Hoodie','Green Zip Hoodie','Black Oversized Hoodie','White Oversized Hoodie','Red Oversized Hoodie','Green Oversized Hoodie','Black Fleece Hoodie','Grey Hoodie','Navy Hoodie','Black Graphic Hoodie','Red Graphic Hoodie','Green Graphic Hoodie','Black Reflective Hoodie','White Reflective Hoodie','Red Fleece Hoodie','Green Fleece Hoodie','Black Street Hoodie','Grey Street Hoodie','Black Camo Hoodie','Green Camo Hoodie','Black Hoodie Dress','Red Varsity Hoodie','Green Varsity Hoodie','Black Sherpa Hoodie','White Sherpa Hoodie','Red Sherpa Hoodie','Black Tech Hoodie','Grey Tech Hoodie','Black Premium Hoodie','Red Premium Hoodie','Green Premium Hoodie','White Premium Hoodie','Black Designer Hoodie','Signature Vriante Hoodie'],
-  footwear: ['Air Runner Sneakers','Street Canvas Shoes','Classic White Sneakers','Black High-Tops','Running Sports Shoes','Casual Loafers','Leather Formal Shoes','Slip-On Sneakers','Retro Basketball Shoes','Skate Shoes','Trail Running Shoes','Suede Loafers','Mesh Running Shoes','Chunky Sneakers','Platform Sneakers','Velcro Strap Shoes','Espadrille Flats','Ankle Boots','Chelsea Boots','Desert Boots','Sports Sandals','Beach Flip-Flops','Hiking Shoes','Yoga Shoes','Barefoot Trainers','Crossfit Shoes','Tennis Shoes','Badminton Shoes','Football Cleats','Cricket Shoes','Basketball High-Tops','Volleyball Shoes','Cycling Shoes','Golf Shoes','Walking Shoes','Orthopedic Shoes','Winter Boots','Rain Shoes','Safety Shoes','Fashion Sneakers'],
-  accessory: ['Classic Leather Belt','Canvas Cap','Woolen Beanie','Aviator Sunglasses','Wayfarer Shades','Leather Wallet','Canvas Backpack','Travel Duffel Bag','Silk Tie','Bow Tie','Cufflinks Set','Silver Chain','Gold Chain','Leather Watch','Smart Watch','Analog Watch','Baseball Cap','Snapback Cap','Fedora Hat','Panama Hat','Leather Gloves','Woolen Scarf','Silk Scarf','Umbrella Premium','Socks Pack','Keychain Leather','Money Clip','Card Holder','Laptop Sleeve','Tote Bag','Crossbody Bag','Messenger Bag','Gym Bag','Waist Bag','Phone Case','Airpods Case','Notebook Premium','Pen Set','Desk Organizer','Water Bottle']
+  tshirt: ['Oversized Black Tee','Red Graphic Tee','White Classic Tee','Blue Drop Shoulder','Black Printed Tee','Red Oversized Tee','White Oversized Tee','Blue Graphic Tee','Black Minimal Tee','Red Polo Tee','White Striped Tee','Blue Polo Tee','Black V-Neck Tee','Red Round Neck','Premium Full Sleeve','White Henley Tee','Blue Acid Wash','Black Tie-Dye','Red Signature Tee','Premium Cotton Tee'],
+  shirt: ['Classic Black Shirt','Casual White Shirt','Red Check Shirt','Blue Check Shirt','Black Formal Shirt','White Formal Shirt','Blue Denim Shirt','Red Flannel Shirt','Blue Linen Shirt','Black Casual Shirt','White Linen Shirt','Red Formal Shirt','Blue Casual Shirt','Black Striped Shirt','White Striped Shirt','Blue Oxford Shirt','Red Casual Shirt','Blue Formal Shirt','Black Party Shirt','White Party Shirt','Red Satin Shirt','Blue Satin Shirt','Black Silk Shirt','White Silk Shirt','Denim Casual Shirt','Red Denim Shirt','Blue Denim Shirt','Black OverShirt','White OverShirt','Premium Signature Shirt'],
+  pant: ['Cargo Street Pants','Slim Fit Denim','Black Cargo Pants','Blue Denim Jeans','Grey Track Pants','Black Formal Trousers','Beige Chinos','Olive Cargo Pants','Black Denim Jeans','White Chinos','Navy Trousers','Grey Formal Pants','Black Joggers','Red Track Pants','Blue Cargo Pants','Blue Slim Jeans','Black Slim Jeans','Grey Joggers','Beige Cargo Pants','Black Chinos','Brown Chinos','Navy Cargo Pants','Ripped Denim','Black Track Pants','Olive Chinos','Grey Cargo Pants','Blue Denim Shorts','Black Denim Shorts','White Track Pants','Premium Wool Trousers','Black Leather Pants','Beige Linen Pants','Blue Cargo Pants','Blue Joggers','Red Joggers','Navy Formal Pants','Brown Leather Pants','Grey Wool Trousers','Premium Cargo Pants','Designer Denim Jeans'],
+  sportswear: ['Performance Training Tee','Dry-Fit Gym T-Shirt','Running Tank Top','Athletic Shorts','Track Pants Pro','Compression Tights','Gym Hoodie','Sports Jacket','Yoga Leggings','Running Shoes Tee','CrossFit Tank','Basketball Jersey','Football Training Kit','Cycling Jersey','Swimming Trunks','Tennis Polo','Gym Stringer','Muscle Fit Tee','Moisture Wicking Tee','Reflective Running Jacket','Sports Bra','Athletic Socks Pack','Gym Gloves','Training Shorts','Running Cap','Sweatband Set','Sports Water Bottle','Gym Duffle Bag','Fitness Tracker Band','Resistance Band Set','Jump Rope Pro','Yoga Mat Premium','Foam Roller','Massage Gun','Gym Belt','Lifting Straps','Knee Sleeves','Wrist Wraps','Ankle Weights','Weighted Vest']
 };
 
-// ===== GENERATE 400 PRODUCTS =====
+// ===== GENERATE 300 PRODUCTS =====
 function generateProducts() {
   const all = [];
   let id = 1;
   const cats = [
-    { key:'tshirt', count:80, priceMin:699, priceMax:2999 },
-    { key:'shirt', count:80, priceMin:499, priceMax:3999 },
-    { key:'pant', count:80, priceMin:1099, priceMax:5999 },
-    { key:'hoodie', count:80, priceMin:1099, priceMax:3999 },
-    { key:'footwear', count:50, priceMin:1499, priceMax:7999 },
-    { key:'accessory', count:30, priceMin:299, priceMax:2999 }
+    { key:'tshirt', count:80, priceMin:499, priceMax:2999 },
+    { key:'shirt', count:80, priceMin:699, priceMax:3999 },
+    { key:'pant', count:80, priceMin:999, priceMax:5999 },
+    { key:'sportswear', count:60, priceMin:599, priceMax:4999 }
   ];
 
   cats.forEach(c => {
@@ -306,7 +294,7 @@ let currentSort = 'default';
 
 // ===== HELPERS =====
 function getCatName(cat) {
-  const names = { tshirt:'T-Shirt', shirt:'Shirt', pant:'Pants', hoodie:'Hoodie', footwear:'Footwear', accessory:'Accessory' };
+  const names = { tshirt:'T-Shirt', shirt:'Shirt', pant:'Pants', sportswear:'Sportswear' };
   return names[cat] || cat;
 }
 function getOriginalPrice(discountedPrice) {
@@ -458,7 +446,7 @@ function addToCartFromQuickView() {
 function orderFromQuickView() {
   if (!currentProduct) return;
   if (!selectedSize) { showToast('Please select size'); return; }
-  const msg = `Hi Vriante! I want to order:%0A%0A*Product:* ${currentProduct.name}%0A*Price:* ₹${currentProduct.price} (30% OFF)%0A*Size:* ${selectedSize}%0A%0APlease confirm!`;
+  const msg = `Hi Hovans Wear! I want to order:%0A%0A*Product:* ${currentProduct.name}%0A*Price:* ₹${currentProduct.price} (30% OFF)%0A*Size:* ${selectedSize}%0A%0APlease confirm!`;
   window.open(`https://wa.me/919900098766?text=${msg}`, '_blank');
 }
 
@@ -483,20 +471,9 @@ function sendWhatsApp() {
   const color = document.getElementById('mColor').value.trim();
   const address = document.getElementById('mAddress').value.trim();
   if (!name || !phone || !size || !address) { showToast('Please fill all fields'); return; }
-  const msg = `Hi Vriante! New Order:%0A%0A*Product:* ${currentProduct.name}%0A*Price:* ₹${currentProduct.price} (30% OFF)%0A*Size:* ${size}%0A*Color:* ${color || 'Any'}%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Address:* ${address}%0A%0APlease confirm!`;
+  const msg = `Hi Hovans Wear! New Order:%0A%0A*Product:* ${currentProduct.name}%0A*Price:* ₹${currentProduct.price} (30% OFF)%0A*Size:* ${size}%0A*Color:* ${color || 'Any'}%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Address:* ${address}%0A%0APlease confirm!`;
   window.open(`https://wa.me/919900098766?text=${msg}`, '_blank');
   closeModal();
-}
-function submitOrder() {
-  const name = document.getElementById('cName').value.trim();
-  const phone = document.getElementById('cPhone').value.trim();
-  const product = document.getElementById('cProduct').value.trim();
-  const size = document.getElementById('cSize').value.trim();
-  const color = document.getElementById('cColor').value.trim();
-  const address = document.getElementById('cAddress').value.trim();
-  if (!name || !phone || !product || !address) { showToast('Please fill all fields'); return; }
-  const msg = `Hi Vriante! New Order:%0A%0A*Product:* ${product}%0A*Size:* ${size || 'N/A'}%0A*Color:* ${color || 'Any'}%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Address:* ${address}%0A%0APlease confirm!`;
-  window.open(`https://wa.me/919900098766?text=${msg}`, '_blank');
 }
 
 // ===== INIT =====
