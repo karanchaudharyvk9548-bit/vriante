@@ -1,20 +1,21 @@
-// ===== LOADER =====
-document.body.classList.add('loading');
-window.addEventListener('load', () => {
+// ===== ENTRY SCREEN =====
+function enterSite() {
+  const entry = document.getElementById('entryScreen');
+  entry.classList.add('hide');
   setTimeout(() => {
-    const loader = document.getElementById('loader');
-    if (loader) loader.classList.add('hide');
+    entry.style.display = 'none';
     document.body.classList.remove('loading');
-    document.querySelectorAll('.section, .section-head, .brand-card, .blog-card, .testimonial, .about-grid, .store-card, .about-img').forEach(el => {
+    // Reveal on scroll
+    document.querySelectorAll('.section, .section-head, .brand-card, .testimonial, .about-grid, .member-card').forEach(el => {
       el.classList.add('reveal');
       observer.observe(el);
     });
     setTimeout(() => {
       renderProducts();
-      updateCountdown();
-    }, 300);
-  }, 1800);
-});
+    }, 200);
+  }, 600);
+}
+document.body.classList.add('loading');
 
 // ===== SCROLL EFFECTS =====
 window.addEventListener('scroll', () => {
@@ -62,19 +63,18 @@ function liveSearch() {
       <h5>${p.name}</h5>
       <p>₹${p.price}</p>
     </div>
-  `).join('') || '<p style="color:#64748b;text-align:center;grid-column:1/-1;padding:40px;letter-spacing:2px;">No products found</p>';
+  `).join('') || '<p style="color:#94a3b8;text-align:center;grid-column:1/-1;padding:40px;letter-spacing:2px;">No products found</p>';
 }
 
 // ===== CART =====
-let cart = JSON.parse(localStorage.getItem('hovans_cart') || '[]');
-let wishlist = JSON.parse(localStorage.getItem('hovans_wishlist') || '[]');
+let cart = JSON.parse(localStorage.getItem('rubicon_cart') || '[]');
 
 function toggleCart() {
   document.getElementById('cartDrawer').classList.toggle('active');
   document.getElementById('cartOverlay').classList.toggle('active');
 }
 function saveCart() {
-  localStorage.setItem('hovans_cart', JSON.stringify(cart));
+  localStorage.setItem('rubicon_cart', JSON.stringify(cart));
   updateCartUI();
 }
 function updateCartUI() {
@@ -117,25 +117,25 @@ function removeFromCart(i) {
   saveCart();
   showToast('Removed from bag');
 }
+
+// ===== WHATSAPP CHECKOUT =====
 function checkoutWhatsApp() {
   if (cart.length === 0) { showToast('Bag is empty'); return; }
-  let msg = 'Hi Hovans Wear! I want to order:%0A%0A';
+  let msg = 'Hi RUBICON! I want to order:%0A%0A';
   let total = 0;
   cart.forEach((item, i) => {
     msg += `*${i+1}.* ${item.name}%0A   Size: ${item.size}%0A   Price: ₹${item.price}%0A%0A`;
     total += item.price;
   });
   msg += `*TOTAL: ₹${total}*%0A%0APlease confirm my order!`;
-  window.open(`https://wa.me/919900098766?text=${msg}`, '_blank');
+  window.open(`https://wa.me/917000000777?text=${msg}`, '_blank');
 }
 
-// ===== WISHLIST =====
-function toggleWishlist() {
-  showToast(`Wishlist: ${wishlist.length} items`);
-}
-function updateWishlistUI() {
-  const count = document.getElementById('wishlistCount');
-  if (count) count.textContent = wishlist.length;
+// ===== MEMBERSHIP =====
+function joinMembership(plan, price) {
+  const msg = `Hi RUBICON! I want to join VIP Membership.%0A%0A*Plan:* ${plan}%0A*Price:* ₹${price}%0A%0APlease confirm!`;
+  window.open(`https://wa.me/917000000777?text=${msg}`, '_blank');
+  showToast(`${plan} Membership — Opening WhatsApp`);
 }
 
 // ===== TOAST =====
@@ -150,14 +150,12 @@ function showToast(msg) {
 // ===== KEYBOARD & OUTSIDE CLICK =====
 document.addEventListener('click', (e) => {
   const qv = document.getElementById('quickViewModal');
-  const om = document.getElementById('orderModal');
   if (e.target === qv) closeQuickView();
-  if (e.target === om) closeModal();
 });
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
-    closeQuickView(); closeModal();
+    closeQuickView();
     document.getElementById('sideMenu').classList.remove('active');
     document.getElementById('searchOverlay').classList.remove('active');
     document.getElementById('cartDrawer').classList.remove('active');
@@ -165,31 +163,8 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// ===== FAQ & NEWSLETTER =====
-function toggleFaq(el) { el.classList.toggle('active'); }
+// ===== NEWSLETTER =====
 function subscribeMsg() { showToast('Subscribed! Check your email'); }
-
-// ===== COUNTDOWN =====
-function updateCountdown() {
-  const target = new Date();
-  target.setDate(target.getDate() + 3);
-  target.setHours(23, 59, 59);
-  const distance = target.getTime() - new Date().getTime();
-  if (distance < 0) return;
-  const d = Math.floor(distance / (1000*60*60*24));
-  const h = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
-  const m = Math.floor((distance % (1000*60*60)) / (1000*60));
-  const s = Math.floor((distance % (1000*60)) / 1000);
-  const dEl = document.getElementById('days');
-  const hEl = document.getElementById('hours');
-  const mEl = document.getElementById('minutes');
-  const sEl = document.getElementById('seconds');
-  if (dEl) dEl.textContent = String(d).padStart(2,'0');
-  if (hEl) hEl.textContent = String(h).padStart(2,'0');
-  if (mEl) mEl.textContent = String(m).padStart(2,'0');
-  if (sEl) sEl.textContent = String(s).padStart(2,'0');
-}
-setInterval(updateCountdown, 1000);
 
 // ===== HERO SLIDESHOW =====
 let currentSlide = 0;
@@ -199,7 +174,7 @@ setInterval(() => {
   slides[currentSlide].classList.remove('active');
   currentSlide = (currentSlide + 1) % slides.length;
   slides[currentSlide].classList.add('active');
-}, 6000);// ===== PRODUCT IMAGES (HOVANS WEAR - 4 CATEGORIES) =====
+}, 6000);// ===== PRODUCT IMAGES (30 PRODUCTS — RUBICON) =====
 const productImages = {
   tshirt: [
     'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600',
@@ -209,11 +184,7 @@ const productImages = {
     'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600',
     'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=600',
     'https://images.unsplash.com/photo-1622445275576-721325763afe?w=600',
-    'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600',
-    'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600',
-    'https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=600',
-    'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600',
-    'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600'
+    'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600'
   ],
   shirt: [
     'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600',
@@ -235,35 +206,35 @@ const productImages = {
     'https://images.unsplash.com/photo-1517438476312-10d79c077509?w=600',
     'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600'
   ],
-  sportswear: [
-    'https://images.unsplash.com/photo-1556906781-9a412961c28c?w=600',
-    'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600',
-    'https://images.unsplash.com/photo-1594381898411-846e7d193883?w=600',
-    'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600',
-    'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600',
-    'https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=600',
-    'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600',
-    'https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600'
+  hoodie: [
+    'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600',
+    'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600',
+    'https://images.unsplash.com/photo-1578681994506-b8f463449011?w=600',
+    'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600',
+    'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600',
+    'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600',
+    'https://images.unsplash.com/photo-1578681994506-b8f463449011?w=600',
+    'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600'
   ]
 };
 
-// ===== PRODUCT NAMES (HOVANS WEAR) =====
+// ===== PRODUCT NAMES (RUBICON) =====
 const productNames = {
   tshirt: ['Oversized Black Tee','Red Graphic Tee','White Classic Tee','Blue Drop Shoulder','Black Printed Tee','Red Oversized Tee','White Oversized Tee','Blue Graphic Tee','Black Minimal Tee','Red Polo Tee','White Striped Tee','Blue Polo Tee','Black V-Neck Tee','Red Round Neck','Premium Full Sleeve','White Henley Tee','Blue Acid Wash','Black Tie-Dye','Red Signature Tee','Premium Cotton Tee'],
-  shirt: ['Classic Black Shirt','Casual White Shirt','Red Check Shirt','Blue Check Shirt','Black Formal Shirt','White Formal Shirt','Blue Denim Shirt','Red Flannel Shirt','Blue Linen Shirt','Black Casual Shirt','White Linen Shirt','Red Formal Shirt','Blue Casual Shirt','Black Striped Shirt','White Striped Shirt','Blue Oxford Shirt','Red Casual Shirt','Blue Formal Shirt','Black Party Shirt','White Party Shirt','Red Satin Shirt','Blue Satin Shirt','Black Silk Shirt','White Silk Shirt','Denim Casual Shirt','Red Denim Shirt','Blue Denim Shirt','Black OverShirt','White OverShirt','Premium Signature Shirt'],
-  pant: ['Cargo Street Pants','Slim Fit Denim','Black Cargo Pants','Blue Denim Jeans','Grey Track Pants','Black Formal Trousers','Beige Chinos','Olive Cargo Pants','Black Denim Jeans','White Chinos','Navy Trousers','Grey Formal Pants','Black Joggers','Red Track Pants','Blue Cargo Pants','Blue Slim Jeans','Black Slim Jeans','Grey Joggers','Beige Cargo Pants','Black Chinos','Brown Chinos','Navy Cargo Pants','Ripped Denim','Black Track Pants','Olive Chinos','Grey Cargo Pants','Blue Denim Shorts','Black Denim Shorts','White Track Pants','Premium Wool Trousers','Black Leather Pants','Beige Linen Pants','Blue Cargo Pants','Blue Joggers','Red Joggers','Navy Formal Pants','Brown Leather Pants','Grey Wool Trousers','Premium Cargo Pants','Designer Denim Jeans'],
-  sportswear: ['Performance Training Tee','Dry-Fit Gym T-Shirt','Running Tank Top','Athletic Shorts','Track Pants Pro','Compression Tights','Gym Hoodie','Sports Jacket','Yoga Leggings','Running Shoes Tee','CrossFit Tank','Basketball Jersey','Football Training Kit','Cycling Jersey','Swimming Trunks','Tennis Polo','Gym Stringer','Muscle Fit Tee','Moisture Wicking Tee','Reflective Running Jacket','Sports Bra','Athletic Socks Pack','Gym Gloves','Training Shorts','Running Cap','Sweatband Set','Sports Water Bottle','Gym Duffle Bag','Fitness Tracker Band','Resistance Band Set','Jump Rope Pro','Yoga Mat Premium','Foam Roller','Massage Gun','Gym Belt','Lifting Straps','Knee Sleeves','Wrist Wraps','Ankle Weights','Weighted Vest']
+  shirt: ['Classic Black Shirt','Casual White Shirt','Red Check Shirt','Blue Check Shirt','Black Formal Shirt','White Formal Shirt','Blue Denim Shirt','Red Flannel Shirt','Blue Linen Shirt','Black Casual Shirt','White Linen Shirt','Red Formal Shirt','Blue Casual Shirt','Black Striped Shirt','White Striped Shirt','Blue Oxford Shirt','Red Casual Shirt','Blue Formal Shirt','Black Party Shirt','White Party Shirt'],
+  pant: ['Cargo Street Pants','Slim Fit Denim','Black Cargo Pants','Blue Denim Jeans','Grey Track Pants','Black Formal Trousers','Beige Chinos','Olive Cargo Pants','Black Denim Jeans','White Chinos','Navy Trousers','Grey Formal Pants','Black Joggers','Red Track Pants','Blue Cargo Pants','Blue Slim Jeans','Black Slim Jeans','Grey Joggers','Beige Cargo Pants','Black Chinos'],
+  hoodie: ['Premium Black Hoodie','Oversized Zip Hoodie','Red Pullover Hoodie','Blue Hoodie','White Hoodie','Black Printed Hoodie','Red Zip Hoodie','Blue Zip Hoodie','Black Oversized Hoodie','White Oversized Hoodie','Red Oversized Hoodie','Blue Oversized Hoodie','Black Fleece Hoodie','Grey Hoodie','Navy Hoodie','Black Graphic Hoodie','Red Graphic Hoodie','Blue Graphic Hoodie','Black Reflective Hoodie','White Reflective Hoodie']
 };
 
-// ===== GENERATE 300 PRODUCTS =====
+// ===== GENERATE 30 PRODUCTS =====
 function generateProducts() {
   const all = [];
   let id = 1;
   const cats = [
-    { key:'tshirt', count:80, priceMin:499, priceMax:2999 },
-    { key:'shirt', count:80, priceMin:699, priceMax:3999 },
-    { key:'pant', count:80, priceMin:999, priceMax:5999 },
-    { key:'sportswear', count:60, priceMin:599, priceMax:4999 }
+    { key:'tshirt', count:8, priceMin:499, priceMax:2999 },
+    { key:'shirt', count:8, priceMin:699, priceMax:3999 },
+    { key:'pant', count:7, priceMin:999, priceMax:5999 },
+    { key:'hoodie', count:7, priceMin:899, priceMax:3499 }
   ];
 
   cats.forEach(c => {
@@ -286,15 +257,13 @@ function generateProducts() {
 const allProducts = generateProducts();
 
 let currentFilter = 'all';
-let visibleCount = 16;
+let visibleCount = 12;
 let currentProduct = null;
 let selectedSize = '';
-let activeFilters = { categories: [], price: null, sizes: [] };
-let currentSort = 'default';
 
 // ===== HELPERS =====
 function getCatName(cat) {
-  const names = { tshirt:'T-Shirt', shirt:'Shirt', pant:'Pants', sportswear:'Sportswear' };
+  const names = { tshirt:'T-Shirt', shirt:'Shirt', pant:'Pants', hoodie:'Hoodie' };
   return names[cat] || cat;
 }
 function getOriginalPrice(discountedPrice) {
@@ -302,48 +271,23 @@ function getOriginalPrice(discountedPrice) {
 }
 
 // ===== FILTER =====
-function toggleFilter() {
-  document.getElementById('filterSidebar').classList.toggle('active');
-}
-function toggleSizeFilter(btn) {
-  btn.classList.toggle('active');
-  applyFilters();
-}
-function clearFilters() {
-  document.querySelectorAll('.filter-group input').forEach(i => i.checked = false);
-  document.querySelectorAll('.size-filter button').forEach(b => b.classList.remove('active'));
-  activeFilters = { categories: [], price: null, sizes: [] };
-  currentFilter = 'all';
-  visibleCount = 16;
+function filterProducts(cat, el) {
+  currentFilter = cat;
+  visibleCount = 12;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  if (el) el.classList.add('active');
   renderProducts();
-}
-function applyFilters() {
-  activeFilters.categories = Array.from(document.querySelectorAll('.filter-group input[type="checkbox"]:checked')).map(i => i.value);
-  const priceRadio = document.querySelector('.filter-group input[name="price"]:checked');
-  activeFilters.price = priceRadio ? priceRadio.value : null;
-  activeFilters.sizes = Array.from(document.querySelectorAll('.size-filter button.active')).map(b => b.textContent);
-  visibleCount = 16;
-  renderProducts();
-}
-function sortProducts(val) {
-  currentSort = val;
-  renderProducts();
+  if (cat !== 'all') {
+    const el2 = document.getElementById('collection');
+    if (el2) el2.scrollIntoView({ behavior: 'smooth' });
+  }
 }
 
 function getFilteredProducts() {
   let filtered = [...allProducts];
-  if (activeFilters.categories.length > 0) {
-    filtered = filtered.filter(p => activeFilters.categories.includes(p.cat));
-  } else if (currentFilter !== 'all') {
+  if (currentFilter !== 'all') {
     filtered = filtered.filter(p => p.cat === currentFilter);
   }
-  if (activeFilters.price) {
-    const [min, max] = activeFilters.price.split('-').map(Number);
-    filtered = filtered.filter(p => p.price >= min && p.price <= max);
-  }
-  if (currentSort === 'low') filtered.sort((a,b) => a.price - b.price);
-  else if (currentSort === 'high') filtered.sort((a,b) => b.price - a.price);
-  else if (currentSort === 'new') filtered.sort((a,b) => b.id - a.id);
   return filtered;
 }
 
@@ -355,13 +299,8 @@ function renderProducts() {
   const filtered = getFilteredProducts();
   const toShow = filtered.slice(0, visibleCount);
 
-  const resultCount = document.getElementById('resultCount');
-  if (resultCount) {
-    resultCount.textContent = `Showing ${toShow.length} of ${filtered.length} products`;
-  }
-
   if (toShow.length === 0) {
-    grid.innerHTML = '<p style="color:#64748b;grid-column:1/-1;text-align:center;padding:80px 20px;letter-spacing:2px;text-transform:uppercase;font-size:12px;">No products found</p>';
+    grid.innerHTML = '<p style="color:#94a3b8;grid-column:1/-1;text-align:center;padding:80px 20px;letter-spacing:2px;text-transform:uppercase;font-size:12px;">No products found</p>';
     const btn = document.getElementById('loadMoreBtn');
     if (btn) btn.style.display = 'none';
     return;
@@ -383,7 +322,7 @@ function renderProducts() {
           <h4>${p.name}</h4>
           <div class="product-price">
             <span class="price">₹${p.price} <small>₹${original}</small></span>
-            <button class="buy-btn" onclick="event.stopPropagation(); openModal(${p.id})">Buy</button>
+            <button class="buy-btn" onclick="event.stopPropagation(); openQuickView(${p.id})">Buy</button>
           </div>
         </div>
       </div>
@@ -401,18 +340,7 @@ function renderProducts() {
   document.querySelectorAll('.product').forEach(el => observer.observe(el));
 }
 
-function filterProducts(cat, el) {
-  currentFilter = cat;
-  activeFilters = { categories: [], price: null, sizes: [] };
-  document.querySelectorAll('.filter-group input').forEach(i => i.checked = false);
-  document.querySelectorAll('.size-filter button').forEach(b => b.classList.remove('active'));
-  visibleCount = 16;
-  renderProducts();
-  if (cat !== 'all') {
-    document.getElementById('collection').scrollIntoView({ behavior: 'smooth' });
-  }
-}
-function loadMore() { visibleCount += 16; renderProducts(); }
+function loadMore() { visibleCount += 12; renderProducts(); }
 
 // ===== QUICK VIEW =====
 function openQuickView(id) {
@@ -423,7 +351,7 @@ function openQuickView(id) {
   document.getElementById('qvImg').src = p.img;
   document.getElementById('qvCat').textContent = getCatName(p.cat);
   document.getElementById('qvTitle').textContent = p.name;
-  document.getElementById('qvPrice').innerHTML = `₹${p.price} <small style="color:#64748b;text-decoration:line-through;font-size:16px;">₹${getOriginalPrice(p.price)}</small>`;
+  document.getElementById('qvPrice').innerHTML = `₹${p.price} <small style="color:#94a3b8;text-decoration:line-through;font-size:16px;">₹${getOriginalPrice(p.price)}</small>`;
   document.querySelectorAll('.size-btns button').forEach(b => b.classList.remove('active'));
   document.getElementById('quickViewModal').classList.add('active');
   document.body.style.overflow = 'hidden';
@@ -446,40 +374,13 @@ function addToCartFromQuickView() {
 function orderFromQuickView() {
   if (!currentProduct) return;
   if (!selectedSize) { showToast('Please select size'); return; }
-  const msg = `Hi Hovans Wear! I want to order:%0A%0A*Product:* ${currentProduct.name}%0A*Price:* ₹${currentProduct.price} (30% OFF)%0A*Size:* ${selectedSize}%0A%0APlease confirm!`;
-  window.open(`https://wa.me/919900098766?text=${msg}`, '_blank');
-}
-
-// ===== ORDER MODAL =====
-function openModal(id) {
-  currentProduct = allProducts.find(p => p.id === id);
-  if (!currentProduct) return;
-  document.getElementById('modalTitle').textContent = currentProduct.name;
-  document.getElementById('modalImg').src = currentProduct.img;
-  document.getElementById('modalPrice').innerHTML = `₹${currentProduct.price} <small style="color:#64748b;text-decoration:line-through;font-size:14px;">₹${getOriginalPrice(currentProduct.price)}</small>`;
-  document.getElementById('orderModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal() {
-  document.getElementById('orderModal').classList.remove('active');
-  document.body.style.overflow = 'auto';
-}
-function sendWhatsApp() {
-  const name = document.getElementById('mName').value.trim();
-  const phone = document.getElementById('mPhone').value.trim();
-  const size = document.getElementById('mSize').value.trim();
-  const color = document.getElementById('mColor').value.trim();
-  const address = document.getElementById('mAddress').value.trim();
-  if (!name || !phone || !size || !address) { showToast('Please fill all fields'); return; }
-  const msg = `Hi Hovans Wear! New Order:%0A%0A*Product:* ${currentProduct.name}%0A*Price:* ₹${currentProduct.price} (30% OFF)%0A*Size:* ${size}%0A*Color:* ${color || 'Any'}%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Address:* ${address}%0A%0APlease confirm!`;
-  window.open(`https://wa.me/919900098766?text=${msg}`, '_blank');
-  closeModal();
+  const msg = `Hi RUBICON! I want to order:%0A%0A*Product:* ${currentProduct.name}%0A*Price:* ₹${currentProduct.price} (30% OFF)%0A*Size:* ${selectedSize}%0A%0APlease confirm!`;
+  window.open(`https://wa.me/917000000777?text=${msg}`, '_blank');
 }
 
 // ===== INIT =====
 window.addEventListener('load', () => {
   setTimeout(() => {
     updateCartUI();
-    updateWishlistUI();
-  }, 2000);
+  }, 1000);
 });
