@@ -407,6 +407,18 @@
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
+<script>
+function enterSite() {
+  const entry = document.getElementById('entryScreen');
+  if (entry) {
+    entry.classList.add('hide');
+    setTimeout(() => {
+      entry.style.display = 'none';
+      document.body.classList.remove('loading');
+    }, 600);
+  }
+}
+</script>
 <script src="script.js"></script>
 </body>
 </html>
