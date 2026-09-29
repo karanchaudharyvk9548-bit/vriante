@@ -95,6 +95,14 @@ if (appliedCoupon) {
     finalTotal = sum - appliedCoupon.discount;
   }
 }
+let finalTotal = sum;
+if (appliedCoupon) {
+  if (appliedCoupon.type === 'percent') {
+    finalTotal = sum - Math.round(sum * appliedCoupon.discount / 100);
+  } else {
+    finalTotal = sum - appliedCoupon.discount;
+  }
+}
 if (total) total.textContent = '₹' + finalTotal;
     return;
   }
@@ -419,6 +427,38 @@ function applyCoupon() {
     msg.className = 'success';
     updateCartUI();
     showToast('Coupon applied!');
+  } else {
+    appliedCoupon = null;
+    msg.textContent = '✗ Invalid coupon code';
+    msg.className = 'error';
+  }
+}
+// ===== COUPON SYSTEM =====
+const coupons = {
+  'RAHUL10': { discount: 10, type: 'percent' },
+  'PRIYA15': { discount: 15, type: 'percent' },
+  'WELCOME20': { discount: 20, type: 'percent' }
+};
+
+let appliedCoupon = null;
+
+function applyCoupon() {
+  const input = document.getElementById('couponInput');
+  const msg = document.getElementById('couponMessage');
+  const code = input.value.trim().toUpperCase();
+
+  if (!code) {
+    msg.textContent = 'Please enter a coupon code';
+    msg.className = 'error';
+    return;
+  }
+
+  if (coupons[code]) {
+    appliedCoupon = { code: code, discount: coupons[code].discount, type: coupons[code].type };
+    msg.textContent = '✓ Coupon applied! ' + coupons[code].discount + '% off';
+    msg.className = 'success';
+    updateCartUI();
+    if (typeof showToast === 'function') showToast('Coupon applied!');
   } else {
     appliedCoupon = null;
     msg.textContent = '✗ Invalid coupon code';
