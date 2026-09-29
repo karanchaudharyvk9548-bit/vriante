@@ -392,4 +392,36 @@ window.addEventListener('load', () => {
   setTimeout(() => {
     updateCartUI();
   }, 1000);
-});
+});// ===== COUPON SYSTEM =====
+const coupons = {
+  'RAHUL10': { discount: 10, type: 'percent' },
+  'PRIYA15': { discount: 15, type: 'percent' },
+  'HOVANS100': { discount: 100, type: 'fixed' },
+  'WELCOME20': { discount: 20, type: 'percent' }
+};
+
+let appliedCoupon = null;
+
+function applyCoupon() {
+  const input = document.getElementById('couponInput');
+  const msg = document.getElementById('couponMessage');
+  const code = input.value.trim().toUpperCase();
+
+  if (!code) {
+    msg.textContent = 'Please enter a coupon code';
+    msg.className = 'error';
+    return;
+  }
+
+  if (coupons[code]) {
+    appliedCoupon = { code: code, ...coupons[code] };
+    msg.textContent = '✓ Coupon applied! ' + coupons[code].discount + (coupons[code].type === 'percent' ? '%' : '₹') + ' off';
+    msg.className = 'success';
+    updateCartUI();
+    showToast('Coupon applied!');
+  } else {
+    appliedCoupon = null;
+    msg.textContent = '✗ Invalid coupon code';
+    msg.className = 'error';
+  }
+}
