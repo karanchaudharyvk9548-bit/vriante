@@ -86,7 +86,16 @@ function updateCartUI() {
   if (itemCount) itemCount.textContent = cart.length;
   if (cart.length === 0) {
     items.innerHTML = '<p class="cart-empty">Your bag is empty</p>';
-    if (total) total.textContent = '₹0';
+  // Coupon discount lagao
+let finalTotal = sum;
+if (appliedCoupon) {
+  if (appliedCoupon.type === 'percent') {
+    finalTotal = sum - Math.round(sum * appliedCoupon.discount / 100);
+  } else {
+    finalTotal = sum - appliedCoupon.discount;
+  }
+}
+if (total) total.textContent = '₹' + finalTotal;
     return;
   }
   let sum = 0;
