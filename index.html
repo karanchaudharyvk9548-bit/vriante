@@ -95,7 +95,11 @@
   <div class="cart-items" id="cartItems">
     <p class="cart-empty">Your bag is empty</p>
   </div>
-  <div class="cart-footer">
+ <div class="coupon-box">
+  <input type="text" id="couponInput" placeholder="Enter Coupon Code" />
+  <button onclick="applyCoupon()">Apply</button>
+  <p id="couponMessage"></p>
+</div> <div class="cart-footer">
     <div class="cart-total">
       <span>TOTAL</span>
       <span id="cartTotal">₹0</span>
