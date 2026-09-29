@@ -102,8 +102,15 @@ if (appliedCoupon) {
   } else {
     finalTotal = sum - appliedCoupon.discount;
   }
+}let finalTotal = sum;
+if (typeof appliedCoupon !== 'undefined' && appliedCoupon) {
+  if (appliedCoupon.type === 'percent') {
+    finalTotal = sum - Math.round(sum * appliedCoupon.discount / 100);
+  } else {
+    finalTotal = sum - appliedCoupon.discount;
+  }
 }
-if (total) total.textContent = '₹' + finalTotal;
+if (total) total.textContent = '₹' + finalTotal;finalTotal;
     return;
   }
   let sum = 0;
