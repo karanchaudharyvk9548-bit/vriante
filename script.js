@@ -1,19 +1,25 @@
 /* ============================================
-   VRIANTE — Frontend Interactions
+   VANALUXE — Frontend Interactions
    ============================================ */
 
+/* ===== CONFIG ===== */
+const CONFIG = {
+  whatsappNumber: '917000000777', // Change this
+  brandName: 'VANALUXE',
+  currency: '₹'
+};
+
 /* ===== UTILITIES ===== */
-function scrollToTop() {
+function scrollTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function scrollToId(id) {
   const el = document.getElementById(id);
-  if (el) {
-    const offset = 80;
-    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
-    window.scrollTo({ top, behavior: 'smooth' });
-  }
+  if (!el) return;
+  const offset = 80;
+  const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+  window.scrollTo({ top, behavior: 'smooth' });
 }
 
 function showToast(msg) {
@@ -25,16 +31,26 @@ function showToast(msg) {
   toast._t = setTimeout(() => toast.classList.remove('show'), 2600);
 }
 
+function formatPrice(n) {
+  return CONFIG.currency + n.toLocaleString('en-IN');
+}
+
+/* ===== ANNOUNCEMENT ===== */
+function hideAnnounce() {
+  const a = document.getElementById('announce');
+  if (a) a.classList.add('hide');
+}
+
 /* ===== SCROLL EFFECTS ===== */
 let scrollTicking = false;
 window.addEventListener('scroll', () => {
   if (scrollTicking) return;
   scrollTicking = true;
   requestAnimationFrame(() => {
-    const nav = document.getElementById('nav');
-    if (nav) {
-      if (window.scrollY > 60) nav.classList.add('scrolled');
-      else nav.classList.remove('scrolled');
+    const header = document.getElementById('header');
+    if (header) {
+      if (window.scrollY > 60) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
     }
     scrollTicking = false;
   });
@@ -52,10 +68,9 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 function attachReveal() {
   document.querySelectorAll(
-    '.editorial-text, .editorial-media, .section-head-center, ' +
-    '.products-head, .campaign-content, .category-card, ' +
-    '.philosophy-inner, .look-item, .newsletter-inner, ' +
-    '.footer-inner, .product'
+    '.editorial-text, .editorial-img, .section-center, .section-head, ' +
+    '.campaign-content, .category-card, .philosophy-inner, ' +
+    '.quality-card, .newsletter-inner, .footer-inner, .product'
   ).forEach(el => {
     if (!el.classList.contains('reveal')) {
       el.classList.add('reveal');
@@ -77,10 +92,10 @@ function toggleMenu() {
 
 /* ===== SEARCH ===== */
 function toggleSearch() {
-  const overlay = document.getElementById('searchOverlay');
-  if (!overlay) return;
-  const opening = !overlay.classList.contains('active');
-  overlay.classList.toggle('active');
+  const panel = document.getElementById('searchPanel');
+  if (!panel) return;
+  const opening = !panel.classList.contains('active');
+  panel.classList.toggle('active');
   document.body.style.overflow = opening ? 'hidden' : '';
   if (opening) {
     setTimeout(() => {
@@ -100,14 +115,14 @@ function liveSearch() {
     .filter(p => p.name.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q))
     .slice(0, 8);
   if (matches.length === 0) {
-    results.innerHTML = '<p style="grid-column:1/-1;color:var(--mid-grey);font-size:13px;letter-spacing:1px;font-style:italic;padding:30px 0;">No products found.</p>';
+    results.innerHTML = '<p style="grid-column:1/-1;color:var(--grey);font-size:13px;letter-spacing:1px;font-style:italic;padding:30px 0;">No products found.</p>';
     return;
   }
   results.innerHTML = matches.map(p => `
-    <div class="search-item" onclick="toggleSearch(); openQuickView(${p.id})">
+    <div class="search-item" onclick="toggleSearch(); openQV(${p.id})">
       <img src="${p.img}" alt="${p.name}" loading="lazy">
       <h5>${p.name}</h5>
-      <p>₹${p.price.toLocaleString('en-IN')}</p>
+      <p>${formatPrice(p.price)}</p>
     </div>
   `).join('');
 }
@@ -117,12 +132,12 @@ let cart = [];
 let appliedCoupon = null;
 
 try {
-  cart = JSON.parse(localStorage.getItem('vriante_cart') || '[]');
+  cart = JSON.parse(localStorage.getItem('vanaluxe_cart') || '[]');
 } catch (e) { cart = []; }
 
 function saveCart() {
   try {
-    localStorage.setItem('vriante_cart', JSON.stringify(cart));
+    localStorage.setItem('vanaluxe_cart', JSON.stringify(cart));
   } catch (e) {}
 }
 
@@ -137,13 +152,13 @@ function toggleCart() {
 }
 
 function updateCartUI() {
+  const badge = document.getElementById('cartBadge');
   const count = document.getElementById('cartCount');
-  const itemCount = document.getElementById('cartItemCount');
   const total = document.getElementById('cartTotal');
   const items = document.getElementById('cartItems');
 
-  if (count) count.textContent = cart.length;
-  if (itemCount) itemCount.textContent = `(${cart.length})`;
+  if (badge) badge.textContent = cart.length;
+  if (count) count.textContent = `(${cart.length})`;
 
   if (!items) return;
 
@@ -162,7 +177,7 @@ function updateCartUI() {
         <div class="cart-item-info">
           <h5>${item.name}</h5>
           <small>Size ${item.size} · Qty 1</small>
-          <p>₹${item.price.toLocaleString('en-IN')}</p>
+          <p>${formatPrice(item.price)}</p>
         </div>
         <button class="cart-remove" onclick="removeFromCart(${i})" aria-label="Remove">✕</button>
       </div>
@@ -177,7 +192,7 @@ function updateCartUI() {
       finalTotal = Math.max(0, sum - appliedCoupon.discount);
     }
   }
-  if (total) total.textContent = '₹' + finalTotal.toLocaleString('en-IN');
+  if (total) total.textContent = formatPrice(finalTotal);
 }
 
 function addToCart(product, size) {
@@ -188,11 +203,11 @@ function addToCart(product, size) {
   showToast('Added to bag');
 }
 
-function addToCartFromQuickView() {
+function addToCartQV() {
   if (!currentProduct) return;
   if (!selectedSize) { showToast('Please select a size'); return; }
   addToCart(currentProduct, selectedSize);
-  closeQuickView();
+  closeQV();
   toggleCart();
 }
 
@@ -204,15 +219,13 @@ function removeFromCart(i) {
 }
 
 /* ===== WHATSAPP CHECKOUT ===== */
-const WHATSAPP_NUMBER = '917000000777'; // Change this
-
 function checkoutWhatsApp() {
   if (cart.length === 0) { showToast('Your bag is empty'); return; }
 
-  let msg = 'Hi VRIANTE! I would like to order:%0A%0A';
+  let msg = `Hi ${CONFIG.brandName}! I would like to order:%0A%0A`;
   let total = 0;
   cart.forEach((item, i) => {
-    msg += `*${i + 1}.* ${item.name}%0A   Size: ${item.size}%0A   Price: ₹${item.price.toLocaleString('en-IN')}%0A%0A`;
+    msg += `*${i + 1}.* ${item.name}%0A   Size: ${item.size}%0A   Price: ${formatPrice(item.price)}%0A%0A`;
     total += item.price;
   });
 
@@ -225,8 +238,8 @@ function checkoutWhatsApp() {
     msg += `*Coupon:* ${appliedCoupon.code}%0A%0A`;
   }
 
-  msg += `*TOTAL: ₹${total.toLocaleString('en-IN')}*%0A%0APlease confirm my order.`;
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+  msg += `*TOTAL: ${formatPrice(total)}*%0A%0APlease confirm my order.`;
+  window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${msg}`, '_blank');
 }
 
 /* ===== NEWSLETTER ===== */
@@ -242,16 +255,16 @@ function subscribeMsg() {
     return;
   }
   note.textContent = 'Thank you. You will be notified at launch.';
-  note.style.color = 'var(--accent)';
+  note.style.color = 'var(--gold)';
   email.value = '';
 }
 
 /* ===== KEYBOARD & OUTSIDE CLICK ===== */
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
-    closeQuickView();
+    closeQV();
     const sm = document.getElementById('sideMenu');
-    const so = document.getElementById('searchOverlay');
+    const so = document.getElementById('searchPanel');
     const cd = document.getElementById('cartDrawer');
     const co = document.getElementById('cartOverlay');
     const sov = document.getElementById('sideOverlay');
@@ -265,8 +278,8 @@ document.addEventListener('keydown', (e) => {
 });
 
 document.addEventListener('click', (e) => {
-  const qv = document.getElementById('quickViewModal');
-  if (e.target === qv) closeQuickView();
+  const qv = document.getElementById('qvModal');
+  if (e.target === qv) closeQV();
 });
 
 /* ===== INIT ===== */
@@ -299,12 +312,12 @@ const allProducts = [
   },
   {
     id: 3,
-    name: 'Off-White Essential Tee',
+    name: 'Ivory Essential Tee',
     price: 1099,
     cat: 'tshirt',
     tag: '',
     img: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=85',
-    desc: 'Warm off-white. Ribbed collar. Structured fit.'
+    desc: 'Warm ivory. Ribbed collar. Structured fit.'
   },
   {
     id: 4,
@@ -313,7 +326,7 @@ const allProducts = [
     cat: 'tshirt',
     tag: 'BEST',
     img: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&q=85',
-    desc: 'Signature VRIANTE print. Heavyweight cotton.'
+    desc: 'Signature VANALUXE print. Heavyweight cotton.'
   },
   {
     id: 5,
@@ -326,12 +339,12 @@ const allProducts = [
   },
   {
     id: 6,
-    name: 'Deep Navy Oversized Tee',
+    name: 'Deep Charcoal Oversized Tee',
     price: 1299,
     cat: 'tshirt',
     tag: '',
     img: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=800&q=85',
-    desc: 'Navy. Drop shoulder. Relaxed fit.'
+    desc: 'Deep charcoal. Drop shoulder. Relaxed fit.'
   },
   {
     id: 7,
@@ -353,12 +366,12 @@ const allProducts = [
   },
   {
     id: 9,
-    name: 'Pullover Hoodie — Off-White',
+    name: 'Pullover Hoodie — Ivory',
     price: 2399,
     cat: 'hoodie',
     tag: '',
     img: 'https://images.unsplash.com/photo-1578681994506-b8f463449011?w=800&q=85',
-    desc: 'Warm off-white. Brushed interior.'
+    desc: 'Warm ivory. Brushed interior.'
   },
   {
     id: 10,
@@ -367,7 +380,7 @@ const allProducts = [
     cat: 'hoodie',
     tag: 'LIMITED',
     img: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=800&q=85',
-    desc: 'Embroidered VRIANTE monogram. Limited run.'
+    desc: 'Embroidered VANALUXE monogram. Limited run.'
   },
   {
     id: 11,
@@ -405,10 +418,6 @@ function getOriginalPrice(price) {
   return Math.round(price / 0.7);
 }
 
-function formatPrice(n) {
-  return '₹' + n.toLocaleString('en-IN');
-}
-
 /* ===== FILTER ===== */
 function filterProducts(cat, el) {
   currentFilter = cat;
@@ -440,7 +449,7 @@ function renderProducts() {
   const toShow = filtered.slice(0, visibleCount);
 
   if (toShow.length === 0) {
-    grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--mid-grey);font-size:13px;letter-spacing:2px;text-transform:uppercase;padding:80px 20px;">No products found</p>';
+    grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--grey);font-size:13px;letter-spacing:2px;text-transform:uppercase;padding:80px 20px;">No products found</p>';
     const btn = document.getElementById('loadMoreBtn');
     if (btn) btn.style.display = 'none';
     return;
@@ -450,11 +459,11 @@ function renderProducts() {
     const original = getOriginalPrice(p.price);
     const tagClass = p.tag === 'BEST' ? 'alt' : '';
     return `
-      <article class="product" onclick="openQuickView(${p.id})">
+      <article class="product" onclick="openQV(${p.id})">
         <div class="product-img">
           ${p.tag ? `<span class="product-tag ${tagClass}">${p.tag}</span>` : ''}
           <img src="${p.img}" alt="${p.name}" loading="lazy">
-          <button class="quick-view-btn" onclick="event.stopPropagation(); openQuickView(${p.id})">Quick View</button>
+          <button class="quick-view-btn" onclick="event.stopPropagation(); openQV(${p.id})">Quick View</button>
         </div>
         <div class="product-info">
           <p class="product-cat">${getCatName(p.cat)}</p>
@@ -478,7 +487,6 @@ function renderProducts() {
     }
   }
 
-  // Re-observe new products for reveal
   document.querySelectorAll('.product').forEach(el => {
     el.classList.add('reveal');
     revealObserver.observe(el);
@@ -491,7 +499,7 @@ function loadMore() {
 }
 
 /* ===== QUICK VIEW ===== */
-function openQuickView(id) {
+function openQV(id) {
   const p = allProducts.find(x => x.id === id);
   if (!p) return;
   currentProduct = p;
@@ -501,7 +509,7 @@ function openQuickView(id) {
   const qvCat = document.getElementById('qvCat');
   const qvTitle = document.getElementById('qvTitle');
   const qvPrice = document.getElementById('qvPrice');
-  const modal = document.getElementById('quickViewModal');
+  const modal = document.getElementById('qvModal');
 
   if (qvImg) qvImg.src = p.img;
   if (qvCat) qvCat.textContent = getCatName(p.cat);
@@ -516,11 +524,13 @@ function openQuickView(id) {
   }
 }
 
-function closeQuickView() {
-  const modal = document.getElementById('quickViewModal');
+function closeQV() {
+  const modal = document.getElementById('qvModal');
   if (modal) modal.classList.remove('active');
-  if (!document.getElementById('cartDrawer')?.classList.contains('active') &&
-      !document.getElementById('sideMenu')?.classList.contains('active')) {
+  const cartOpen = document.getElementById('cartDrawer')?.classList.contains('active');
+  const menuOpen = document.getElementById('sideMenu')?.classList.contains('active');
+  const searchOpen = document.getElementById('searchPanel')?.classList.contains('active');
+  if (!cartOpen && !menuOpen && !searchOpen) {
     document.body.style.overflow = '';
   }
 }
@@ -531,11 +541,11 @@ function selectSize(btn) {
   selectedSize = btn.textContent.trim();
 }
 
-function orderFromQuickView() {
+function orderQV() {
   if (!currentProduct) return;
   if (!selectedSize) { showToast('Please select a size'); return; }
-  const msg = `Hi VRIANTE! I am interested in:%0A%0A*Product:* ${currentProduct.name}%0A*Size:* ${selectedSize}%0A*Price:* ₹${currentProduct.price.toLocaleString('en-IN')}%0A%0APlease share more details.`;
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+  const msg = `Hi ${CONFIG.brandName}! I am interested in:%0A%0A*Product:* ${currentProduct.name}%0A*Size:* ${selectedSize}%0A*Price:* ${formatPrice(currentProduct.price)}%0A%0APlease share more details.`;
+  window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${msg}`, '_blank');
 }
 
 /* ===== INITIAL RENDER ===== */
